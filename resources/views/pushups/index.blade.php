@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-        <ul>
-        @foreach ($pushups as $pushup)
-            <li><a href="/pushups/{{ $pushup->id }}">{{ $pushup->comment }}</a></li>
-        @endforeach
-        </ul>
-    </h1>
-</body>
-</html>
+@extends ('layout.master')
+
+@section ('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-3">
+            <!-- Latest Activity -->
+            <h3>Recent Activity</h3>
+            <a class="btn btn-outline-primary btn-sm mb-3" href="/pushups/create">Submit</a>
+            <table class="table table-hover table-responsive-sm">
+                <tbody>
+                    @foreach ($pushups as $pushup)
+                        <tr class="">
+                            <td class="pl-0 pr-0">
+                                <strong>{{ $pushup->created_at->diffForHumans() }}</strong> <a href="/"><u>{{ $pushup->user_id }}</u></a> completed {{ $pushup->amount }} push-ups. <i>"<a href="/pushups/{{ $pushup->id }}">{{ $pushup->comment }}"</a></i>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            </div><!-- col-md-12 -->
+        </div><!-- row -->
+    </div><!-- container -->
+
+    @include ('layout.highcharts')
+@endsection

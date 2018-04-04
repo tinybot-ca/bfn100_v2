@@ -1,0 +1,187 @@
+<!-- Highcharts -->
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+        <h3>Charts</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+        <div id="chart4" class="mt-2 mb-2"></div>
+        </div>
+        <div class="col-md-6">
+        <div id="chart2" class="mt-2 mb-2"></div>
+        </div>
+    </div><!-- row -->
+    
+    <div class="row">
+        <div class="col-md-12">
+        <div id="chart3" class="mt-2 mb-2"></div>
+        </div>
+    </div><!-- row -->
+    
+    <div class="row mb-5">
+        <div class="col-md-12">
+        <div id="chart1" class="mt-2 mb-2"></div>
+        </div>
+    </div><!-- row -->
+    
+</div><!-- container -->
+        
+<script>
+    Highcharts.setOptions({
+        lang: {
+            thousandsSep: ','
+        },
+        chart: {
+            backgroundColor: {
+                linearGradient: [0, 0, 500, 500],
+                stops: [
+                    [0, 'rgb(255, 255, 255)'],
+                    [1, 'rgb(240, 240, 240)']
+                ]
+            },
+            borderWidth: 1,
+            borderColor: '#DFE2E6',
+            plotShadow: false,
+            plotBorderWidth: 0
+        }
+    });
+    
+    // myChart1 -- COLUMN CHART -- Total by Year
+    $(function () {
+        var myChart1 = Highcharts.chart('chart1', {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Annual'
+            },
+            subtitle: {
+                text: 'Total push-ups by year'
+            },
+            xAxis: {
+                categories: ['2018', '2017']
+            },
+            yAxis: {
+                title: {
+                    text: 'Push-ups'
+                }
+            },
+            series: [{"name":"bernie","data":[3100,4748]},{"name":"moti","data":[3520,5380]},{"name":"nikosuave","data":[760,0]},{"name":"ashman","data":[470,0]}]      });
+    });
+    
+    // myChart2 -- PIE CHART -- Total Overall
+    $(function () {
+        var myChart2 = Highcharts.chart('chart2', {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: 'Overall'
+            },
+            subtitle: {
+                text: 'Total overall push-ups'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>:<br />{point.y:,.0f}',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Push-ups',
+                colorByPoint: true,
+                data: [{"name":"bernie","y":7848},{"name":"moti","y":8900},{"name":"nikosuave","y":760},{"name":"ashman","y":470}]          }]
+        });
+    });
+    
+    // myChart3 -- LINE CHART -- Total by Month
+    $(function () {
+        var myChart3 = Highcharts.chart('chart3', {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: 'Monthly'
+            },
+            subtitle: {
+                text: 'Total push-ups by month'
+            },
+            xAxis: {
+                categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
+            },
+            yAxis: {
+                title: {
+                    text: 'Push-ups'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]      });
+    });
+</script>
+        
+<script>
+    // myChart4 -- BAR CHART -- Current Month
+    $(function () {
+        var myChart4 = Highcharts.chart('chart4', {
+            credits: {
+                enabled: false
+            },
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Current Month'
+            },
+            subtitle: {
+                text: 'Total push-ups for April'
+            },
+            xAxis: {
+                categories: ['April']
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Push-ups'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+                    enableMouseTracking: true
+                }
+            },
+            series: [{"name":"bernie","data":[300]},{"name":"moti","data":[300]},{"name":"nikosuave","data":[300]},{"name":"ashman","data":[200]}]      })
+    });
+</script>
