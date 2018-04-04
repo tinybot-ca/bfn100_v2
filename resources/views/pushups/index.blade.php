@@ -12,7 +12,10 @@
                     @foreach ($pushups as $pushup)
                         <tr class="">
                             <td class="pl-0 pr-0">
-                                <strong>{{ $pushup->created_at->diffForHumans() }}</strong> <a href="/"><u>{{ $pushup->user_id }}</u></a> completed {{ $pushup->amount }} push-ups. <i>"<a href="/pushups/{{ $pushup->id }}">{{ $pushup->comment }}"</a></i>
+                                <strong>{{ $pushup->created_at->diffForHumans() }}</strong> <a href="/"><u>{{ $pushup->user_id }}</u></a> completed {{ $pushup->amount }} push-ups. 
+                                @if ( $pushup->comment )
+                                    <i>"<a href="/pushups/{{ $pushup->id }}">{{ $pushup->comment }}</a>"</i>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

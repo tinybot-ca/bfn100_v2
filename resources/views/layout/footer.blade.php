@@ -1,7 +1,7 @@
 <footer class="text-muted">
     <div class="container">
-        <p>&copy; 2018 Tinybot. All rights reserved.</p>
-        <p>Logged in: true - bernie</p>
+        <p>&copy; {{ now()->year }} Tinybot. All rights reserved.</p>
+        <p>Logged in: UNKNOWN</p>
         <p>Server timezone: America/Los_Angeles</p>
     </div>
 </footer>
