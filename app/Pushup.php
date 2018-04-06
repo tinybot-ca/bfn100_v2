@@ -4,10 +4,11 @@ namespace App;
 
 class Pushup extends Model
 {
-    
+    protected $dates = ['datetime'];
 
-    public function scopeWeakSets($query)
+    public function user()
     {
-        return $query->where('amount', '>', 40);
+        return $this->belongsTo(User::class);
     }
+
 }

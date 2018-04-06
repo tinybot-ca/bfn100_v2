@@ -15,7 +15,9 @@ class CreatePushupsTable extends Migration
     {
         Schema::create('pushups', function (Blueprint $table) {
             $table->increments('id');
-            $table->dateTime('date');
+            $table->date('date');
+            $table->time('time');
+            $table->datetime('datetime');
             $table->integer('user_id');
             $table->integer('amount');
             $table->text('comment')->nullable();

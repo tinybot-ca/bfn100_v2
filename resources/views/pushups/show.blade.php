@@ -4,7 +4,11 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-12">
-            <h3>Record Detail</h3>
+
+            <h3>
+                Record Detail
+            </h3>
+
             <div class="actions mb-3">
                 <a class="btn btn-primary btn-sm" href="/users/show.php?id=1">Back to User</a>
                 <a class="btn btn-primary btn-sm " href="/pushups/edit.php?id=221">Edit</a>
@@ -19,11 +23,11 @@
                 </dl>
                 <dl>
                     <dt>Date</dt>
-                    <dd>{{ $pushup->created_at->diffForHumans() }}</dd>
+                    <dd>{{ $pushup->datetime->toDayDateTimeString() }}</dd>
                 </dl>
                 <dl>
                     <dt>Username</dt>
-                    <dd>{{ $pushup->id }}</dd>
+                    <dd>{{ $pushup->user->name }}</dd>
                 </dl>
                 <dl>
                     <dt># of push-ups</dt>

@@ -2,7 +2,7 @@
     <div class="container">
         <p>&copy; {{ now()->year }} Tinybot. All rights reserved.</p>
         <p>Logged in: UNKNOWN</p>
-        <p>Server timezone: America/Los_Angeles</p>
+        <p>Server timezone: UNKNOWN</p>
     </div>
 </footer>
 

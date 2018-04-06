@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Pushup;
 
 class PushupsController extends Controller
@@ -41,14 +42,20 @@ class PushupsController extends Controller
         // Can I use the count() function to check if any pushup records exist for the provided date?
         // https://stackoverflow.com/questions/29161433/laravel-5-how-to-retrieve-records-according-to-date
 
-        $this->validate(request(), 
-                ['amount' => 'required|numeric|min:1|max:100'],
-                $this->messages()
+        $this->validate(request(), [
+            'amount' => 'required|numeric|min:1|max:100',
+            'date' => Rule::unique('pushups')->where(function ($query) {
+                return $query->where('user_id', 2); // Todo: Change this to request('user_id')
+            })
+        ],
+            $this->messages()
         );
 
         Pushup::create([
             'user_id' => 1,
-            'date' => request('date'),
+            'date' => date('Y-m-d', strtotime(request('date'))),
+            'time' => date('H:i:s', strtotime(request('time'))),
+            'datetime' => date('Y-m-d H:i:s', strtotime(request('date') . ' ' . request('time'))),
             'amount' => request('amount'),
             'comment' => request('comment')
         ]);
