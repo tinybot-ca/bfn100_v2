@@ -23,9 +23,9 @@
 </head>
 
 <body>
-@include ('layout.nav')
+@include ('layouts.nav')
 @yield ('content')
-@include ('layout.footer')
+@include ('layouts.footer')
 </body>
 
 </html>

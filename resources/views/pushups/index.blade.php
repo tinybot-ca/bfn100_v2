@@ -1,4 +1,4 @@
-@extends ('layout.master')
+@extends ('layouts.master')
 
 @section ('content')
     <div class="container">
@@ -25,5 +25,5 @@
         </div><!-- row -->
     </div><!-- container -->
 
-    @include ('layout.highcharts')
+    @include ('layouts.highcharts')
 @endsection

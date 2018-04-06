@@ -1,4 +1,4 @@
-@extends ('layout.master')
+@extends ('layouts.master')
 
 @section ('content')
     <div class="container mt-3">
@@ -9,15 +9,7 @@
                     <a class="btn btn-outline-primary btn-sm" href="{{ url()->previous() }}">Cancel</a>
                 </div>
 
-                @if (count($errors))
-                    <div class="alert alert-danger">
-                        @foreach ($errors->all() as $error)
-                            <li>
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </div>
-                @endif
+                @include ('layouts.errors')
                 
                 <form method="post" action="/pushups">
                     {{ csrf_field() }}
