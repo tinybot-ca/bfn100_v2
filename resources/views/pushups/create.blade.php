@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <h3>New Submission</h3>
                 <div class="actions mb-3">
-                    <a class="btn btn-outline-primary btn-sm" href="{{ url()->previous() }}">Cancel</a>
+                    <a class="btn btn-outline-primary btn-sm" href="/">Cancel</a>
                 </div>
                 
                 @include ('layouts.errors')

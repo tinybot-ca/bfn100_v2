@@ -6,7 +6,7 @@
         @else
             <p>Logged in: FALSE</p>
         @endif
-        <p>Server timezone: UNKNOWN</p>
+        <p>Local timezone: UNKNOWN</p>
     </div>
 </footer>
 

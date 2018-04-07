@@ -7,6 +7,23 @@ use App\User;
 
 class RegistrationController extends Controller
 {
+    public function __construct() 
+    {
+        $this->middleware('auth')->only(['index', 'show']);
+    }
+
+    public function index() 
+    {
+        $users = User::all();
+
+        return view('registrations.index', compact('users'));
+    }
+
+    public function show(User $user) 
+    {
+        return view('registrations.show');
+    }
+
     public function create()
     {
         return view('registrations.create');

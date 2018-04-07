@@ -44,7 +44,7 @@ class PushupsController extends Controller
         $this->validate(request(), [
             'amount' => 'required|numeric|min:1|max:100',
             'date' => Rule::unique('pushups')->where(function ($query) {
-                return $query->where('user_id', 2); // Todo: Change this to request('user_id')
+                return $query->where('user_id', auth()->id()); 
             })
         ],
             $messages
@@ -58,10 +58,7 @@ class PushupsController extends Controller
             'amount' => request('amount'),
             'comment' => request('comment')
         ]);
-        // Todo: Change above to use below once I have user_id properly setup
-        // Pushup::create(request(['amount', 'comment']));
-        
+    
         return redirect('/');
-
     }
 }
