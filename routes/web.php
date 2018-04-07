@@ -1,7 +1,15 @@
 <?php
 
-Route::get('/', 'PushupsController@index');
+Route::get('/', 'PushupsController@index')->name('home');
+Route::get('/home', 'PushupsController@index');
 Route::get('/pushups', 'PushupsController@index');
 Route::get('/pushups/create', 'PushupsController@create');
 Route::post('/pushups', 'PushupsController@store');
 Route::get('/pushups/{pushup}', 'PushupsController@show');
+
+Route::get('/register', 'RegistrationController@create');
+Route::post('/register', 'RegistrationController@store');
+
+Route::get('/login', 'SessionsController@create');
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@destroy');

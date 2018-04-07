@@ -1,7 +1,11 @@
 <footer class="text-muted">
     <div class="container">
         <p>&copy; {{ now()->year }} Tinybot. All rights reserved.</p>
-        <p>Logged in: UNKNOWN</p>
+        @if (Auth::check())
+            <p>Logged in: TRUE - {{ Auth::user()->name }}</p>
+        @else
+            <p>Logged in: FALSE</p>
+        @endif
         <p>Server timezone: UNKNOWN</p>
     </div>
 </footer>

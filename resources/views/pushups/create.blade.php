@@ -8,7 +8,7 @@
                 <div class="actions mb-3">
                     <a class="btn btn-outline-primary btn-sm" href="{{ url()->previous() }}">Cancel</a>
                 </div>
-
+                
                 @include ('layouts.errors')
                 
                 <form method="post" action="/pushups">

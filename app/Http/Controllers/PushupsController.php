@@ -8,6 +8,11 @@ use App\Pushup;
 
 class PushupsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+
     public function index() 
     {
         $pushups = Pushup::latest()->limit(8)->get();
@@ -28,19 +33,13 @@ class PushupsController extends Controller
         return view('pushups.create', compact(['date', 'time']));
     }
 
-    public function messages() 
+    public function store()
     {
-        return [
+        $messages = [
             'amount.required' => 'The # of push-ups field is required.',
             'amount.min' => 'The # of push-ups must be at least 1.',
             'amount.max' => 'The # of push-ups may not be greater than 100.'
         ];
-    }
-
-    public function store()
-    {
-        // Can I use the count() function to check if any pushup records exist for the provided date?
-        // https://stackoverflow.com/questions/29161433/laravel-5-how-to-retrieve-records-according-to-date
 
         $this->validate(request(), [
             'amount' => 'required|numeric|min:1|max:100',
@@ -48,11 +47,11 @@ class PushupsController extends Controller
                 return $query->where('user_id', 2); // Todo: Change this to request('user_id')
             })
         ],
-            $this->messages()
+            $messages
         );
 
         Pushup::create([
-            'user_id' => 1,
+            'user_id' => auth()->id(),
             'date' => date('Y-m-d', strtotime(request('date'))),
             'time' => date('H:i:s', strtotime(request('time'))),
             'datetime' => date('Y-m-d H:i:s', strtotime(request('date') . ' ' . request('time'))),

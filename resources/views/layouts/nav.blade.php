@@ -12,10 +12,14 @@
             </button>
             <div class="collapse navbar-collapse" id="myTogglerNav">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="/login.php">Login</a>
-                    <a class="nav-item nav-link" href="/pushups/new.php">Submit</a>
-                    <a class="nav-item nav-link" href="/users/">Users</a>
-                    <a class="nav-item nav-link" href="/logout.php">Logout</a>
+                    @if (! Auth::check())
+                        <a class="nav-item nav-link" href="/login">Login</a>
+                        <a class="nav-item nav-link" href="/register">Register</a>
+                    @else
+                        <a class="nav-item nav-link" href="/pushups/create">Submit</a>
+                        <a class="nav-item nav-link" href="/users/">Users</a>
+                        <a class="nav-item nav-link" href="/logout">Logout</a>
+                    @endif
                 </div>
             </div>
         </div>
