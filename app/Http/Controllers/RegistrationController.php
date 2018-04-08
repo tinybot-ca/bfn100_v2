@@ -21,7 +21,9 @@ class RegistrationController extends Controller
 
     public function show(User $user) 
     {
-        return view('registrations.show');
+        $pushups = $user->pushups->sortBy('datetime')->reverse();
+
+        return view('registrations.show', compact(['user', 'pushups']));
     }
 
     public function create()
