@@ -24,6 +24,10 @@ class SessionsController extends Controller
             ]);
         }
 
+        // Flash message
+        $success_message = 'Welcome back, ' . auth()->user()->name . '.';
+        session()->flash('message', $success_message);
+
         return redirect()->home();
     }
 
