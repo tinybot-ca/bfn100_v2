@@ -10,6 +10,7 @@ class RegistrationController extends Controller
     public function __construct() 
     {
         $this->middleware('auth')->only(['index', 'show']);
+        $this->middleware('guest')->only(['create']);
     }
 
     public function index() 
