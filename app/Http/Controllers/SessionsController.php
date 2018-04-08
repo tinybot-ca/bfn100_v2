@@ -31,6 +31,10 @@ class SessionsController extends Controller
     {
         auth()->logout();
 
+        // Flash message
+        $success_message = 'You have been logged out.';
+        session()->flash('message', $success_message);
+
         return redirect()->home();
     }
 }

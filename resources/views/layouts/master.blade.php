@@ -23,7 +23,23 @@
 </head>
 
 <body>
+
 @include ('layouts.nav')
+
+<div class="mt-4 mb-4"></div>
+
+@if ($flash = session('message'))
+    <div class="container">        
+        <div class="row">
+            <div class="col-md-12">
+                <div id="flash-message" class="alert alert-success" role="alert">
+                    {{ $flash }}
+                </div>
+            </div><!-- col-md-12 -->
+        </div><!-- row -->
+    </div><!-- container -->
+@endif
+
 @yield ('content')
 @include ('layouts.footer')
 </body>

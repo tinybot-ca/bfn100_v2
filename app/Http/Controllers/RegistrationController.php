@@ -36,8 +36,8 @@ class RegistrationController extends Controller
     {
         // Form validation
         $this->validate(request(), [
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|confirmed'
         ]);
 
@@ -50,6 +50,10 @@ class RegistrationController extends Controller
 
         // Sign the user in
         auth()->login($user);
+
+        // Flash message
+        $success_message = 'Registration successful. Welcome to BFN100, ' . auth()->user()->name . '.';
+        session()->flash('message', $success_message);
 
         // Redirect 
         return redirect()->home();

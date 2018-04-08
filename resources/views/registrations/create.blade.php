@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('content')
-<div class="container mt-3">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <h3>Registration</h3>
@@ -15,7 +15,7 @@
                     <label for="name">
                         Username
                     </label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required />
+                    <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" autocapitalize="off" required autofocus />
                 </div>
 
                 <div class="form-group">

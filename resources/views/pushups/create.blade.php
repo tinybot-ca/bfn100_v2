@@ -1,7 +1,7 @@
 @extends ('layouts.master')
 
 @section ('content')
-    <div class="container mt-3">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h3>New Submission</h3>
@@ -32,14 +32,14 @@
                         <label for="username">
                             Username
                         </label>
-                        <input type="text" class="form-control" id="username" name="username" disabled/>
+                        <input type="text" class="form-control" id="username" name="username" value="{{ auth()->user()->name }}" disabled />
                     </div>
 
                     <div class="form-group">
                         <label for="amount">
                             # of push-ups
                         </label>
-                        <input type="text" class="form-control" id="amount" name="amount" />
+                        <input type="number" class="form-control" id="amount" name="amount" autofocus />
                     </div>
 
                     <div class="form-group">

@@ -3,7 +3,7 @@
 @section ('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mt-3">
+            <div class="col-md-12">
             <!-- Latest Activity -->
             <h3>Recent Activity</h3>
             <a class="btn btn-outline-primary btn-sm mb-3" href="/pushups/create">Submit</a>
