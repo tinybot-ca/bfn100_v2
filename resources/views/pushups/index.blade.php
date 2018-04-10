@@ -1,6 +1,7 @@
 @extends ('layouts.master')
 
 @section ('content')
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -13,6 +14,11 @@
                     </div>
 
                     <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item grid-bg">
+                            <a class="card-link btn btn-outline-primary btn-sm" href="/pushups/create">Submit</a>
+                        </li>
+
                         @foreach ($pushups as $pushup)
                         <li class="list-group-item">
                             <strong>{{ $pushup->datetime->diffForHumans() }}</strong> <a href="/users/{{ $pushup->user->id }}"><u>{{ $pushup->user->name }}</u></a> completed {{ $pushup->amount }} push-ups. 
@@ -23,14 +29,13 @@
                         @endforeach
                     </ul>
 
-                    <div class="card-body">
-                            <a class="card-link btn btn-primary" href="/pushups/create">Submit</a>
-                    </div>
-
                 </div><!-- card -->
             </div><!-- col-md-12 -->
         </div><!-- row -->
     </div><!-- container -->
 
+    <br />
+
     @include ('layouts.highcharts')
+
 @endsection
