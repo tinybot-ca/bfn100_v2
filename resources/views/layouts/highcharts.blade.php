@@ -1,33 +1,23 @@
 <!-- Highcharts -->
 <div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="mt-0 mb-0 pt-0 pb-0">Charts</h4>
+        </div>
+    
+        <div class="card-body">
+            
+            <div id="chart4" class=""></div>
+            <br />
+            <div id="chart2" class=""></div>
+            <br />
+            <div id="chart3" class=""></div>
+            <br />
+            <div id="chart1" class=""></div>
+            
+        </div><!-- card-body -->
 
-    <div class="row">
-        <div class="col-md-12">
-        <h3>Charts</h3>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6">
-        <div id="chart4" class="mt-2 mb-2"></div>
-        </div>
-        <div class="col-md-6">
-        <div id="chart2" class="mt-2 mb-2"></div>
-        </div>
-    </div><!-- row -->
-    
-    <div class="row">
-        <div class="col-md-12">
-        <div id="chart3" class="mt-2 mb-2"></div>
-        </div>
-    </div><!-- row -->
-    
-    <div class="row mb-5">
-        <div class="col-md-12">
-        <div id="chart1" class="mt-2 mb-2"></div>
-        </div>
-    </div><!-- row -->
-    
+    </div><!-- card -->
 </div><!-- container -->
         
 <script>
