@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Recent Activity</h3>
-                        <a class="card-link btn btn-outline-primary btn-sm" href="/pushups/create">Submit</a>
+                        <a class="card-link btn btn-outline-primary btn-sm ml-auto" href="/pushups/create">Submit</a>
                     </div>
 
                     <ul class="list-group list-group-flush">
