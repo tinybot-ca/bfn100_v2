@@ -1,7 +1,7 @@
 <header>
     <nav class="navbar bg-dark navbar-dark navbar-expand-sm">
         <div class="container">
-            <a class="navbar-brand" href="/"><i class="fas fa-poo"></i> BFN100</a>
+            <a class="navbar-brand" href="/"><i class="fas fa-medkit"></i> BFN100</a>
             <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
                 data-target="#myTogglerNav"

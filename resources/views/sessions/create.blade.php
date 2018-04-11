@@ -13,7 +13,7 @@
                     <h4 class>Login</h4>
                 </div>
 
-                <div class="card-body mb-0 pb-0">
+                <div class="card-body">
                     @include ('layouts.errors')
 
                     <form method="POST" action="/login">
