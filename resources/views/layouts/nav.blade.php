@@ -1,8 +1,7 @@
 <header>
     <nav class="navbar bg-dark navbar-dark navbar-expand-sm">
         <div class="container">
-            <a href="/" class="navbar-left"><img src="{{ asset('images/toilet_sign.png') }}" class="toilet img-responsive"></a>
-            <a class="navbar-brand" href="/">BFN100</a>
+            <a class="navbar-brand" href="/"><i class="fas fa-poo"></i> BFN100</a>
             <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
                 data-target="#myTogglerNav"
