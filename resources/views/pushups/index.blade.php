@@ -2,40 +2,42 @@
 
 @section ('content')
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
 
-                <!-- Latest Activity -->
-                <div class="card">
+            <!-- Latest Activity -->
+            <div class="card">
 
-                    <div class="card-header">
-                        <h4 class="mt-0 mb-0 pt-0 pb-0">Recent Activity</h4>
-                    </div>
+                <div class="card-header">
+                    <h4 class>Recent Activity</h4>
+                </div>
 
-                    <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush">
 
-                        <li class="list-group-item grid-bg">
-                            <a class="card-link btn btn-outline-primary btn-sm" href="/pushups/create">Submit</a>
-                        </li>
+                    <li class="list-group-item grid-bg">
+                        <a class="card-link btn btn-outline-primary btn-sm" href="/pushups/create">Submit</a>
+                    </li>
 
-                        @foreach ($pushups as $pushup)
-                        <li class="list-group-item">
-                            <strong>{{ $pushup->datetime->diffForHumans() }}</strong> <a href="/users/{{ $pushup->user->id }}"><u>{{ $pushup->user->name }}</u></a> completed {{ $pushup->amount }} push-ups. 
-                                @if ( $pushup->comment )
-                                    <i>"<a href="/pushups/{{ $pushup->id }}">{{ $pushup->comment }}</a>"</i>
-                                @endif
-                        </li>
-                        @endforeach
-                    </ul>
+                    @foreach ($pushups as $pushup)
+                    <li class="list-group-item">
+                        <strong>{{ $pushup->datetime->diffForHumans() }}</strong> <a href="/users/{{ $pushup->user->id }}"><u>{{ $pushup->user->name }}</u></a> completed {{ $pushup->amount }} push-ups. 
+                            @if ( $pushup->comment )
+                                <i>"<a href="/pushups/{{ $pushup->id }}">{{ $pushup->comment }}</a>"</i>
+                            @endif
+                    </li>
+                    @endforeach
+                    
+                </ul>
 
-                </div><!-- card -->
-            </div><!-- col-md-12 -->
-        </div><!-- row -->
-    </div><!-- container -->
+            </div><!-- card -->
 
-    <br />
+        </div><!-- col-md-12 -->
+    </div><!-- row -->
+</div><!-- container -->
 
-    @include ('layouts.highcharts')
+<br />
+
+@include ('layouts.highcharts')
 
 @endsection
