@@ -12,11 +12,13 @@
                     <h4 class>User Profile</h4>
                 </div>
                 
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item grid-bg">
-                        <a class="btn btn-outline-primary btn-sm " href="/users/edit">Edit</a>
-                    </li>
-                </ul>
+                @if (auth()->id() == $user->id)
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item grid-bg">
+                            <a class="btn btn-outline-primary btn-sm " href="/users/{{ $user->id }}/edit">Edit</a>
+                        </li>
+                    </ul>
+                @endif
 
                 <div class="card-body">
 

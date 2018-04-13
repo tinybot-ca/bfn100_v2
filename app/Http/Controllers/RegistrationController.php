@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Validation\Rule;
 
 class RegistrationController extends Controller
 {
@@ -30,6 +31,36 @@ class RegistrationController extends Controller
     public function create()
     {
         return view('registrations.create');
+    }
+
+    public function edit(User $user)
+    {
+        if (auth()->id() != $user->id) {
+            session()->flash('message', 'Unauthorized access.');
+
+            return back();
+        }
+
+        return view('registrations.edit', compact('user'));
+    }
+
+    public function update(User $user)
+    {
+        $this->validate(request(), [
+            'name' => ['required', Rule::unique('users')->ignore($user->name, 'name')],
+            'email' => ['required', Rule::unique('users')->ignore($user->email, 'email')],
+            'password' => 'confirmed'
+        ]);
+        
+        $user->update([
+            'name' => request('name'), 
+            'email' => request('email'), 
+            'password' => bcrypt(request('password'))
+        ]);
+
+        session()->flash('message', 'User profile updated.');
+
+        return redirect('/users/' . $user->id);
     }
 
     public function store()

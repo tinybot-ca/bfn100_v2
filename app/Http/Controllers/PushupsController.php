@@ -35,6 +35,12 @@ class PushupsController extends Controller
     
     public function edit(Pushup $pushup) 
     {
+        if (auth()->id() != $pushup->user->id) {
+            session()->flash('message', 'Unauthorized access.');
+
+            return back();
+        }
+
         return view('pushups.edit', compact('pushup'));
     }
     
@@ -57,9 +63,9 @@ class PushupsController extends Controller
 
         $pushup->update(request(['amount', 'comment']));
 
-        session()->flash('message', 'Yolo!');
+        session()->flash('message', 'Push-up record has been updated.');
 
-        return redirect('/');
+        return redirect('/pushups/' . $pushup->id);
     }
 
     public function store()

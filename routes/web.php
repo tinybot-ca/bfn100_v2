@@ -17,6 +17,8 @@ Route::post('/register', 'RegistrationController@store');
 
 Route::get('/users', 'RegistrationController@index');
 Route::get('/users/{user}', 'RegistrationController@show');
+Route::get('/users/{user}/edit', 'RegistrationController@edit');
+Route::patch('/users/{user}', 'RegistrationController@update');
 
 Route::get('/login', 'SessionsController@create')->name('login');
 Route::post('/login', 'SessionsController@store');
