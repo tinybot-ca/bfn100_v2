@@ -18,7 +18,9 @@ class SessionsController extends Controller
 
     public function store()
     {
-        if (! auth()->attempt(request(['email', 'password']))) {
+        $remember = true; // Forcing "Remember me" on for everyone
+        
+        if (! auth()->attempt(request(['email', 'password']), $remember)) {
         
             return back()->withInput()->withErrors([
                 'message' => 'Please check your credentials and try again.'
