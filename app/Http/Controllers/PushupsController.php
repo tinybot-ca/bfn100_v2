@@ -15,7 +15,7 @@ class PushupsController extends Controller
 
     public function index() 
     {
-        $pushups = Pushup::latest()->limit(8)->get();
+        $pushups = Pushup::orderBy('datetime', 'desc')->limit(8)->get();
 
         return view('pushups.index', compact('pushups'));
     }
@@ -32,8 +32,13 @@ class PushupsController extends Controller
 
         return view('pushups.create', compact(['date', 'time']));
     }
-
-    public function store()
+    
+    public function edit(Pushup $pushup) 
+    {
+        return view('pushups.edit', compact('pushup'));
+    }
+    
+    public function update(Pushup $pushup) 
     {
         $messages = [
             'amount.required' => 'The # of push-ups field is required.',
@@ -45,12 +50,36 @@ class PushupsController extends Controller
             'amount' => 'required|numeric|min:1|max:100',
             'date' => Rule::unique('pushups')->where(function ($query) {
                 return $query->where('user_id', auth()->id()); 
-            })
-        ],
+                })->ignore($pushup->date, 'date')
+            ],
             $messages
         );
 
-        Pushup::create([
+        $pushup->update(request(['amount', 'comment']));
+
+        session()->flash('message', 'Yolo!');
+
+        return redirect('/');
+    }
+
+    public function store()
+    {
+        $messages = [
+            'amount.required' => 'The # of push-ups field is required.',
+            'amount.min' => 'The # of push-ups must be at least 1.',
+            'amount.max' => 'The # of push-ups may not be greater than 100.'
+        ];
+        
+        $this->validate(request(), [
+            'amount' => 'required|numeric|min:1|max:100',
+            'date' => Rule::unique('pushups')->where(function ($query) {
+                return $query->where('user_id', auth()->id()); 
+                })
+            ],
+            $messages
+        );
+    
+    Pushup::create([
             'user_id' => auth()->id(),
             'date' => date('Y-m-d', strtotime(request('date'))),
             'time' => date('H:i:s', strtotime(request('time'))),
@@ -58,6 +87,8 @@ class PushupsController extends Controller
             'amount' => request('amount'),
             'comment' => request('comment')
         ]);
+
+        session()->flash('message', 'Boom! Tell the world my story!');
     
         return redirect('/');
     }

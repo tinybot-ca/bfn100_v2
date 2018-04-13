@@ -33,8 +33,8 @@
                             <input type="password" class="form-control" id="password" name="password" required>
                         </div>
         
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                        <div class="form-group pt-3 mb-0 pb-0">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
         
                     </form>
