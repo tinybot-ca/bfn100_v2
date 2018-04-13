@@ -46,6 +46,12 @@ class PushupsController extends Controller
     
     public function update(Pushup $pushup) 
     {
+        if (auth()->id() != $pushup->user->id) {
+            session()->flash('message', 'Unauthorized access.');
+
+            return back();
+        }
+
         $messages = [
             'amount.required' => 'The # of push-ups field is required.',
             'amount.min' => 'The # of push-ups must be at least 1.',
@@ -96,6 +102,32 @@ class PushupsController extends Controller
 
         session()->flash('message', 'Boom! Tell the world my story!');
     
+        return redirect('/');
+    }
+
+    public function delete(Pushup $pushup)
+    {
+        if (auth()->id() != $pushup->user->id) {
+            session()->flash('message', 'Unauthorized access.');
+
+            return back();
+        }
+
+        return view('pushups.delete', compact('pushup'));
+    }
+
+    public function destroy(Pushup $pushup)
+    {
+        if (auth()->id() != $pushup->user->id) {
+            session()->flash('message', 'Unauthorized access.');
+
+            return back();
+        }
+
+        $pushup->delete();
+
+        session()->flash('message', 'Record deleted.');
+
         return redirect('/');
     }
 }

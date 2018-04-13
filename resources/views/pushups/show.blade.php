@@ -16,7 +16,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item grid-bg">
                             <a class="btn btn-outline-primary btn-sm " href="/pushups/{{ $pushup->id }}/edit">Edit</a>
-                            <a class="btn btn-outline-primary btn-sm " href="/pushups/delete">Delete</a>
+                            <a class="btn btn-outline-primary btn-sm " href="/pushups/{{ $pushup->id }}/delete">Delete</a>
                         </li>
                     </ul>
                 @endif

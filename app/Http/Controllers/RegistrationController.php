@@ -46,6 +46,12 @@ class RegistrationController extends Controller
 
     public function update(User $user)
     {
+        if (auth()->id() != $user->id) {
+            session()->flash('message', 'Unauthorized access.');
+
+            return back();
+        }
+        
         $this->validate(request(), [
             'name' => ['required', Rule::unique('users')->ignore($user->name, 'name')],
             'email' => ['required', Rule::unique('users')->ignore($user->email, 'email')],

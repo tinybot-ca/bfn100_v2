@@ -8,6 +8,8 @@ Route::post('/pushups', 'PushupsController@store');
 Route::get('/pushups/{pushup}', 'PushupsController@show');
 Route::get('/pushups/{pushup}/edit', 'PushupsController@edit');
 Route::patch('/pushups/{pushup}', 'PushupsController@update');
+Route::get('/pushups/{pushup}/delete', 'PushupsController@delete');
+Route::delete('/pushups/{pushup}/delete', 'PushupsController@destroy');
 
 
 Route::get('/register', 'RegistrationController@create');
