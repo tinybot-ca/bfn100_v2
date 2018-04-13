@@ -49,14 +49,18 @@ class RegistrationController extends Controller
         $this->validate(request(), [
             'name' => ['required', Rule::unique('users')->ignore($user->name, 'name')],
             'email' => ['required', Rule::unique('users')->ignore($user->email, 'email')],
-            'password' => 'confirmed'
+            'password' => 'sometimes|confirmed'
         ]);
         
         $user->update([
             'name' => request('name'), 
             'email' => request('email'), 
-            'password' => bcrypt(request('password'))
         ]);
+        
+        if (! request('password') == '')
+        {
+            $user->update(['password' => bcrypt(request('password'))]);
+        }
 
         session()->flash('message', 'User profile updated.');
 

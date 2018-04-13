@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\PushupsController;
-
 Route::get('/', 'PushupsController@index')->name('home');
 Route::get('/home', 'PushupsController@index');
 Route::get('/pushups', 'PushupsController@index');
