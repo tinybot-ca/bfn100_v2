@@ -1,5 +1,5 @@
 <footer class="text-muted">
-    <div class="container">
+    <div class="container mono dark-bg pt-5 pb-5">
         <p>&copy; {{ now()->year }} Tinybot. All rights reserved.</p>
         @if (Auth::check())
             <p>Logged in: TRUE - {{ Auth::user()->name }}</p>
