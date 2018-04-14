@@ -44,8 +44,10 @@ footer p {
 
 .card-header {
     color: #e6e9ed;
+    text-shadow: 1px 1px 1px #474849;
     /* background-color: #57697c; */
-    background: linear-gradient(#64788c , #424f5e);
+    /* background: linear-gradient(#64788c , #424f5e); */
+    background: linear-gradient(#90a5b9 , #6a798a);
 }
 
 h4 {
