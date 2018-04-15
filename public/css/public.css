@@ -69,3 +69,15 @@ h4 {
     color: #e6e9ed;
     background: #373B50;
 }
+
+body {
+    background-color: #F5F8FA;
+}
+
+.navbar {
+    background-color: #373B50 !important;
+}
+
+.nav-item {
+    font-family: 'Roboto Mono', monospace;
+}

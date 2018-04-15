@@ -1,13 +1,19 @@
 <footer class="text-muted">
-    <div class="container mono dark-bg pt-5 pb-5">
-        <p>&copy; {{ now()->year }} Tinybot. All rights reserved.</p>
-        @if (Auth::check())
-            <p>Logged in: TRUE - {{ Auth::user()->name }}</p>
-        @else
-            <p>Logged in: FALSE</p>
-        @endif
-        <p>Local timezone: UNKNOWN</p>
+
+    <div class="container-fluid dark-bg pt-5 pb-5">
+
+        <div class="container mono">
+            <p>&copy; {{ now()->year }} Tinybot. All rights reserved.</p>
+            @if (Auth::check())
+                <p>Logged in: TRUE - {{ Auth::user()->name }}</p>
+            @else
+                <p>Logged in: FALSE</p>
+            @endif
+            <p>Local timezone: UNKNOWN</p>
+        </div>
+
     </div>
+
 </footer>
 
 <!-- Bootstrap core JavaScript
