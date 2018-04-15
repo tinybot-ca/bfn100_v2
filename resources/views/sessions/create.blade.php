@@ -3,8 +3,8 @@
 @section ('content')
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
 
             <!-- Latest Activity -->
             <div class="card">
@@ -19,12 +19,23 @@
                     <form method="POST" action="/login">
                         {{ csrf_field() }}
         
-                        <div class="form-group">
-                            <label for="email">
-                                Email
+                        <div class="form-group row">
+
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">
+                                Email Address
                             </label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus>
-                        </div>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"  name="email" value="{{ old('email') }}" required autofocus>
+
+                                {{-- @if ($errors->has('email')) --}}
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                {{-- @endif --}}
+                            </div>
+
+                        </div><!-- form-group row -->
         
                         <div class="form-group">
                             <label for="password">
