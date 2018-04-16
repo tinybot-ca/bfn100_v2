@@ -29,7 +29,7 @@
 
 footer {
     padding-top: 3rem;
-    padding-bottom: 3rem;
+    padding-bottom: 0;
 }
 
 footer p {
@@ -80,8 +80,4 @@ body {
 
 .nav-item {
     font-family: 'Roboto Mono', monospace;
-}
-
-body, h1, h2, h3, h4 {
-    font-family: 'Roboto', sans-serif;
 }
