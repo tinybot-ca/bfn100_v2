@@ -12,8 +12,14 @@
                     <h4 class>Edit User Details</h4>
                 </div>
 
+                <!-- Action Buttons -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item grid-bg">
+                    <a class="btn btn-outline-primary btn-sm " href="{{ url()->previous() }}">Cancel</a>
+                    </li>
+                </ul>
+
                 <div class="card-body">
-                    @include ('layouts.errors')
             
                     <form method="POST" action="/users/{{ $user->id }}">
                         {{ method_field('PATCH') }}
@@ -25,7 +31,13 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" autocapitalize="off" required autofocus />
+                                <input type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" name="name" value="{{ old('name', $user->name) }}" autocapitalize="off" required autofocus />
+
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -35,7 +47,13 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" required />
+                                <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email', $user->email) }}" required />
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -45,7 +63,13 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" id="password" name="password" />
+                                <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" id="password" name="password" />
+
+                                @if ($errors->has('password'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -55,7 +79,13 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" />
+                                <input type="password" class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" id="password_confirmation" name="password_confirmation" />
+
+                                @if ($errors->has('password_confirmation'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -64,10 +94,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Submit
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url()->previous() }}">
-                                        Cancel
-                                </a>
                             </div>
                         </div>
 

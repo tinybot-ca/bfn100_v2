@@ -91,14 +91,14 @@ class PushupsController extends Controller
             $messages
         );
     
-    Pushup::create([
-            'user_id' => auth()->id(),
-            'date' => date('Y-m-d', strtotime(request('date'))),
-            'time' => date('H:i:s', strtotime(request('time'))),
-            'datetime' => date('Y-m-d H:i:s', strtotime(request('date') . ' ' . request('time'))),
-            'amount' => request('amount'),
-            'comment' => request('comment')
-        ]);
+        Pushup::create([
+                'user_id' => auth()->id(),
+                'date' => date('Y-m-d', strtotime(request('date'))),
+                'time' => date('H:i:s', strtotime(request('time'))),
+                'datetime' => date('Y-m-d H:i:s', strtotime(request('date') . ' ' . request('time'))),
+                'amount' => request('amount'),
+                'comment' => request('comment')
+            ]);
 
         session()->flash('message', 'Boom! Tell the world my story!');
     

@@ -12,6 +12,7 @@
                     <h4 class>Record Detail</h4>
                 </div>
                 
+                <!-- Action Buttons -->
                 @if (auth()->id() == $pushup->user->id)
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item grid-bg">

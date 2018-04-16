@@ -12,10 +12,17 @@
                 <div class="card-header">
                     <h4>New Submission</h4>
                 </div>
+
+                <!-- Action Buttons -->
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item grid-bg">
+                    <a class="btn btn-outline-primary btn-sm " href="{{ url()->previous() }}">Cancel</a>
+                    </li>
+                </ul>
                 
                 <div class="card-body">
                     
-                    @include ('layouts.errors')
+                    {{-- @include ('layouts.errors') --}}
 
                     <form method="POST" action="/pushups">
                         {{ csrf_field() }}
@@ -90,7 +97,9 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
                             </div>
                         </div>
 
