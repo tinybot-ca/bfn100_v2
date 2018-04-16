@@ -13,12 +13,24 @@
             <div class="collapse navbar-collapse" id="myTogglerNav">
                 <div class="navbar-nav ml-auto">
                     @if (! Auth::check())
+
                         <a class="nav-item nav-link" href="/login">Login</a>
+
                         <a class="nav-item nav-link" href="/register">Register</a>
+
                     @else
+
                         <a class="nav-item nav-link" href="/pushups/create">Submit</a>
+
                         <a class="nav-item nav-link" href="/users/">Users</a>
-                        <a class="nav-item nav-link" href="/logout">Logout</a>
+
+                        <a class="nav-item nav-link" href="/logout" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        
                     @endif
                 </div>
             </div>
