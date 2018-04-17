@@ -23,7 +23,14 @@
                             <label for="email">
                                 Email
                             </label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required autofocus>
+                            <input type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}" required autofocus>
+
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+
                         </div>
         
                         <div class="form-group">

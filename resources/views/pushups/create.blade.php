@@ -45,7 +45,14 @@
                             <label for="amount">
                                 # of push-ups
                             </label>
-                            <input type="number" class="form-control" id="amount" name="amount" autofocus />
+                            <input type="number" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" name="amount" autofocus />
+
+                            @if ($errors->has('amount'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('amount') }}</strong>
+                                </span>
+                            @endif
+
                         </div>
 
                         <div class="form-group">
