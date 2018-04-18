@@ -13,9 +13,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\LoginDetected' => [
-            'App\Listeners\UpdateActivityLog',
-        ],
+        
         'Illuminate\Auth\Events\Attempting' => [
             'App\Listeners\LogAuthenticationAttempt',
         ],
@@ -31,6 +29,11 @@ class EventServiceProvider extends ServiceProvider
         'Illuminate\Auth\Events\Lockout' => [
             'App\Listeners\LogLockout',
         ],
+
+        'App\Events\PushupCreated' => [
+            'App\Listeners\LogPushup'
+        ],
+
     ];
 
     /**

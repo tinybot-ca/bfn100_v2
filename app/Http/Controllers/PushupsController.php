@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Pushup;
+use App\Events\PushupCreated;
 
 class PushupsController extends Controller
 {
@@ -91,7 +92,7 @@ class PushupsController extends Controller
             $messages
         );
     
-        Pushup::create([
+        $pushup = Pushup::create([
                 'user_id' => auth()->id(),
                 'date' => date('Y-m-d', strtotime(request('date'))),
                 'time' => date('H:i:s', strtotime(request('time'))),
@@ -99,6 +100,8 @@ class PushupsController extends Controller
                 'amount' => request('amount'),
                 'comment' => request('comment')
             ]);
+
+        event(new PushupCreated($pushup));
 
         session()->flash('message', 'Boom! Tell the world my story!');
     
