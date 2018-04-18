@@ -5,7 +5,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h4 class="mt-0 mb-0 pt-0 pb-0">Charts</h4>
+                    <h4>Charts</h4>
                 </div>
             
                 <div class="card-body">

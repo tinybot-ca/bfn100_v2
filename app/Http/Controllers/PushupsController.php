@@ -18,7 +18,11 @@ class PushupsController extends Controller
     {
         $pushups = Pushup::orderBy('datetime', 'desc')->limit(8)->get();
         
-        return view('pushups.index', compact('pushups'));
+        // Prepare chart data
+
+        $chart2 = Pushups::all()->groupBy();
+
+        return view('pushups.index', compact('pushups', 'chart2'));
     }
 
     public function show(Pushup $pushup) 
