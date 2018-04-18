@@ -9,10 +9,23 @@
             @else
                 <p>Logged in: FALSE</p>
             @endif
-            <p>Local timezone: UNKNOWN</p>
-            <p>Version: 2.0.0</p>
-        </div>
 
+            <p>
+                Local timezone: UNKNOWN
+            </p>
+            
+            <p>
+                {{-- Need to look at tutorial vid for view controller thing so that this can be passed to footer on any page  --}}
+                {{-- IP: {{ $geoplugin['geoplugin_credit'] }} --}}
+                IP Address: {{ request()->ip() }}
+            </p>
+
+            <p>
+                Application Version: 2.0.0
+            </p>
+
+        </div>
+        
     </div>
 
 </footer>

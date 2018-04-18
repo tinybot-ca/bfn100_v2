@@ -27,12 +27,12 @@ class LogSuccessfulLogin implements ShouldQueue
      */
     public function handle(Login $event)
     {
+        // geoPlugin: http://www.geoplugin.com/
         $geoplugin =  var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=' . request()->ip())));
-        // dd($geoplugin);
-        // dd('User with this email: ' . $event->user->email . ' just logged in!');
 
         Activity::create([
             'description' => 'Username: ' . $event->user->name . ' | Email: ' . $event->user->email . ' | IP: ' . request()->ip()
-        ]);
+            ]);
+
     }
 }

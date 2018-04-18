@@ -16,7 +16,7 @@ class PushupsController extends Controller
     public function index() 
     {
         $pushups = Pushup::orderBy('datetime', 'desc')->limit(8)->get();
-
+        
         return view('pushups.index', compact('pushups'));
     }
 
