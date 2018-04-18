@@ -11,7 +11,7 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Pushup;
 
-class PushupCreated
+class PushupDelete
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

@@ -15,7 +15,6 @@ Route::patch('/pushups/{pushup}', 'PushupsController@update');
 Route::get('/pushups/{pushup}/delete', 'PushupsController@delete');
 Route::delete('/pushups/{pushup}/delete', 'PushupsController@destroy');
 
-
 // Route::get('/register', 'RegistrationController@create');
 // Route::post('/register', 'RegistrationController@store');
 
