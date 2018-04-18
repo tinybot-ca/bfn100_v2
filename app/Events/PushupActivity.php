@@ -11,18 +11,21 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use App\Pushup;
 
-class PushupDelete
+class PushupActivity
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public $type;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Pushup $pushup)
+    public function __construct(Pushup $pushup, $type)
     {
         $this->pushup = $pushup;
+        $this->type = $type;
     }
 
     /**

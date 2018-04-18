@@ -30,16 +30,8 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\LogLockout',
         ],
 
-        'App\Events\PushupCreate' => [
-            'App\Listeners\LogPushupCreate'
-        ],
-
-        'App\Events\PushupUpdate' => [
-            'App\Listeners\LogPushupUpdate'
-        ],
-
-        'App\Events\PushupDelete' => [
-            'App\Listeners\LogPushupDelete'
+        'App\Events\PushupActivity' => [
+            'App\Listeners\LogPushup'
         ],
 
     ];

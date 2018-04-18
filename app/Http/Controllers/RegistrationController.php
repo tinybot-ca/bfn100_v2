@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Validation\Rule;
+use App\Mail\Welcome;
 
 class RegistrationController extends Controller
 {
@@ -98,6 +99,9 @@ class RegistrationController extends Controller
 
         // Redirect 
         return redirect()->home();
+
+        // Send Welcome email
+        \Mail::to($user)->send(new Welcome);
     }
     
 }

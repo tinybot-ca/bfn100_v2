@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Pushup;
-use App\Events\PushupCreate;
-use App\Events\PushupUpdate;
-use App\Events\PushupDelete;
+use App\Events\PushupActivity;
 
 class PushupsController extends Controller
 {
@@ -72,7 +70,7 @@ class PushupsController extends Controller
 
         $pushup->update(request(['amount', 'comment']));
 
-        event(new PushupUpdate($pushup));
+        event(new PushupActivity($pushup, 'Pushup Update'));
 
         session()->flash('message', 'Push-up record has been updated.');
 
@@ -105,7 +103,7 @@ class PushupsController extends Controller
                 'comment' => request('comment')
             ]);
 
-        event(new PushupCreate($pushup));
+        event(new PushupActivity($pushup, 'Pushup Create'));
 
         session()->flash('message', 'Boom! Tell the world my story!');
     
@@ -132,8 +130,8 @@ class PushupsController extends Controller
         }
         
         $pushup->delete();
-        
-        event(new PushupDelete($pushup));
+
+        event(new PushupActivity($pushup, 'Pushup Delete'));
         
         session()->flash('message', 'Record deleted.');
 

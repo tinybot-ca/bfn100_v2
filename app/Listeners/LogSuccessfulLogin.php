@@ -31,9 +31,14 @@ class LogSuccessfulLogin implements ShouldQueue
         $geoplugin =  var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=' . request()->ip())));
 
         Activity::create([
+
             'type' => 'Login',
-            'description' => 'Username: ' . $event->user->name . ' | Email: ' . $event->user->email . ' | IP: ' . request()->ip()
-            ]);
+
+            'description' => 'Username: ' . $event->user->name 
+                           . ' | Email: ' . $event->user->email 
+                           . ' | IP: ' . request()->ip()
+
+        ]);
 
     }
 }
