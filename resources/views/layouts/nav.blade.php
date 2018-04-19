@@ -22,7 +22,9 @@
 
                         <a class="nav-item nav-link" href="/pushups/create">Submit</a>
 
-                        <a class="nav-item nav-link" href="/users/">Users</a>
+                        <a class="nav-item nav-link" href="/tutorial">Tutorial</a>
+
+                        <a class="nav-item nav-link" href="/users">Users</a>
 
                         <a class="nav-item nav-link" href="/logout" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">Logout</a>

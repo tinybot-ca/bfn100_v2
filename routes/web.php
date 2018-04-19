@@ -28,3 +28,5 @@ Route::patch('/users/{user}', 'RegistrationController@update');
 // Route::get('/logout', 'SessionsController@destroy');
 
 Route::get('/charts/chart4', 'ChartsController@chart4');
+
+Route::view('/tutorial', 'pushups.tutorial');

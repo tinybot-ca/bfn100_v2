@@ -149,11 +149,11 @@
 
     // myChart4 -- BAR CHART -- Current Month
 
-    var JsonData = $.ajax({
-        dataType: "json",
-        url: "http://bfn100_v2.test/charts/chart4",
-        async: false
-    }).responseText;
+    // var JsonData = $.ajax({
+    //     dataType: "json",
+    //     url: "http://bfn100_v2.test/charts/chart4",
+    //     async: false
+    // }).responseText;
 
     $(function () {
         var myChart4 = Highcharts.chart('chart4', {
@@ -186,7 +186,7 @@
                     enableMouseTracking: true
                 }
             },
-            series: JsonData
+            series: [{"name":"bernie","data":[300]},{"name":"moti","data":[300]},{"name":"nikosuave","data":[300]},{"name":"ashman","data":[200]}]
         })
     });
 
