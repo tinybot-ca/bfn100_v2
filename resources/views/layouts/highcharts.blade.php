@@ -178,6 +178,7 @@
                     enableMouseTracking: true
                 }
             },
-            series: [{"name":"bernie","data":[300]},{"name":"moti","data":[300]},{"name":"nikosuave","data":[300]},{"name":"ashman","data":[200]}]      })
+            series: [ ]
+        })
     });
 </script>

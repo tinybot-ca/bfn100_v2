@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Pushup;
 use App\Events\PushupActivity;
+use Carbon\Carbon;
 
 class PushupsController extends Controller
 {
@@ -17,12 +18,8 @@ class PushupsController extends Controller
     public function index() 
     {
         $pushups = Pushup::orderBy('datetime', 'desc')->limit(8)->get();
-        
-        // Prepare chart data
 
-        $chart2 = Pushups::all()->groupBy();
-
-        return view('pushups.index', compact('pushups', 'chart2'));
+        return view('pushups.index', compact('pushups'));
     }
 
     public function show(Pushup $pushup) 
