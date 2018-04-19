@@ -146,7 +146,15 @@
 </script>
         
 <script>
+
     // myChart4 -- BAR CHART -- Current Month
+
+    var JsonData = $.ajax({
+        dataType: "json",
+        url: "http://bfn100_v2.test/charts/chart4",
+        async: false
+    }).responseText;
+
     $(function () {
         var myChart4 = Highcharts.chart('chart4', {
             credits: {
@@ -178,7 +186,8 @@
                     enableMouseTracking: true
                 }
             },
-            series: [ ]
+            series: JsonData
         })
     });
+
 </script>
