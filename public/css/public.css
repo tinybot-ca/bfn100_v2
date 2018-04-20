@@ -81,3 +81,7 @@ body {
 .nav-item {
     font-family: 'Roboto Mono', monospace;
 }
+
+video {
+    object-fit: fill;
+}
