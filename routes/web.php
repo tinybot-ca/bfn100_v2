@@ -27,6 +27,7 @@ Route::patch('/users/{user}', 'RegistrationController@update');
 // Route::post('/login', 'SessionsController@store');
 // Route::get('/logout', 'SessionsController@destroy');
 
-Route::get('/charts/chart4', 'ChartsController@chart4');
+Route::get('/charts/currentMonth', 'ChartsController@currentMonth');
+Route::get('/charts/lastMonth', 'ChartsController@lastMonth');
 
 Route::view('/tutorial', 'pushups.tutorial')->middleware('auth');

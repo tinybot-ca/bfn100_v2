@@ -10,7 +10,9 @@
             
                 <div class="card-body">
                     
-                    <div id="chart4" class=""></div>
+                    <div id="currentMonth" class=""></div>
+                    <br />
+                    <div id="lastMonth" class=""></div>
                     <br />
                     <div id="chart2" class=""></div>
                     <br />
@@ -141,53 +143,114 @@
                     enableMouseTracking: true
                 }
             },
-            series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]      });
+            series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]      
+        });
     });
 </script>
         
 <script>
 
-    // myChart4 -- BAR CHART -- Current Month
+    // Current Month -- LINE CHART
+    $(function() {
+    
+        var JsonData = $.ajax({
+            dataType: "json",
+            url: "{{ url('/charts/currentMonth') }}",
+            async: true,
+            complete: function(data) {
+                console.log(data.responseJSON);
+                // console.log(data['categories'].responseJSON);
 
-    // var JsonData = $.ajax({
-    //     dataType: "json",
-    //     url: "http://bfn100_v2.test/charts/chart4",
-    //     async: false
-    // }).responseText;
+                // drawMyChart(data.responseJSON);
+            }
+        });
 
-    $(function () {
-        var myChart4 = Highcharts.chart('chart4', {
-            credits: {
-                enabled: false
-            },
-            chart: {
-                type: 'bar'
-            },
-            title: {
-                text: 'Current Month'
-            },
-            subtitle: {
-                text: 'Total push-ups for April'
-            },
-            xAxis: {
-                categories: ['April']
-            },
-            yAxis: {
-                min: 0,
+        function drawMyChart(chartData) {
+            var myChart = Highcharts.chart('currentMonth', {
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'line'
+                },
                 title: {
-                    text: 'Push-ups'
-                }
-            },
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-                    enableMouseTracking: true
-                }
-            },
-            series: [{"name":"bernie","data":[300]},{"name":"moti","data":[300]},{"name":"nikosuave","data":[300]},{"name":"ashman","data":[200]}]
-        })
+                    text: 'Current Month'
+                },
+                subtitle: {
+                    text: 'Total push-ups for April'
+                },
+                xAxis: {
+                    categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Push-ups'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]
+            })
+        }
+    });
+
+</script>
+
+<script>
+    
+    // Last Month -- BAR CHART
+    $(function() {
+
+        var JsonData = $.ajax({
+            dataType: "json",
+            url: "{{ url('/charts/lastMonth') }}",
+            async: true,
+            complete: function(data) {
+                // console.log(data.responseJSON);
+                drawMyChart(data.responseJSON);
+            }
+        });
+    
+        function drawMyChart(chartData) {
+            var myChart = Highcharts.chart('lastMonth', {
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Last Month'
+                },
+                subtitle: {
+                    text: 'Total push-ups for March'
+                },
+                xAxis: {
+                    categories: ['March']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Push-ups'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                series: chartData
+            })
+        }
     });
 
 </script>
