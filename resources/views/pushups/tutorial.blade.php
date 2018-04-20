@@ -20,17 +20,23 @@
                 <div class="card-body">
 
                     <!-- Video -->
-                    <div class="video-container">
+                    <div id="video-container">
                     
-                    <video id="my-video" class="video-js" controls preload="auto" width="688" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-                        <source src="{{ asset('videos/The_Perfect_Push_Up.mp4') }}" type='video/mp4'>
-                        <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a web browser that
-                        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                        </p>
-                    </video>
+                        <video id="my-video" class="video-js" controls preload="auto" width="688" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                            <source src="{{ asset('videos/The_Perfect_Push_Up.mp4') }}" type='video/mp4'>
+                            <p class="vjs-no-js">
+                            To view this video please enable JavaScript, and consider upgrading to a web browser that
+                            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            </p>
+                        </video>
 
                     </div>
+
+                    <!-- Description -->
+                    <li class="list-group-item grid-bg">
+                        <h3>The Perfect Pushup</h3>
+                        Proper form is key! This is a great video that provides some great information on form and technique. The main thing we want to avoid is injury!
+                    </li>
 
                     <!-- Table of contents -->
                     <li class="list-group-item">
@@ -48,5 +54,25 @@
 </div><!-- container -->
 
 <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+
+<script>
+
+function resize() {
+    let videoWidth = $( "#video-container" ).width();
+    let videoRatio = 1.777777777777778;
+
+    $( "#my-video" ).css('width', videoWidth);
+    $( "#my-video" ).css('height', videoWidth / videoRatio);
+}
+
+$(function() {
+    resize();
+});
+
+$( window ).resize(function() {
+  resize();
+});
+
+</script>
 
 @endsection
