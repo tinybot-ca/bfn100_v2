@@ -29,4 +29,4 @@ Route::patch('/users/{user}', 'RegistrationController@update');
 
 Route::get('/charts/chart4', 'ChartsController@chart4');
 
-Route::view('/tutorial', 'pushups.tutorial');
+Route::view('/tutorial', 'pushups.tutorial')->middleware('auth');

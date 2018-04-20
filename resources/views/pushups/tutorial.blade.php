@@ -35,7 +35,7 @@
                     <!-- Description -->
                     <li class="list-group-item grid-bg">
                         <h3>The Perfect Pushup</h3>
-                        Proper form is key! This is a great video that provides some great information on form and technique. The main thing we want to avoid is injury!
+                        Proper form is key! This is a great video that provides information on form and technique. The main thing we want to avoid is injury!
                     </li>
 
                     <!-- Table of contents -->
