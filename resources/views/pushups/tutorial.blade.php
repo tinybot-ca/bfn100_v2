@@ -22,7 +22,7 @@
                     <!-- Video -->
                     <div id="video-container">
                     
-                        <video id="my-video" class="video-js" controls preload="auto" width="688" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+                        <video id="my-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="688" data-setup="{}">
                             <source src="{{ asset('videos/The_Perfect_Push_Up.mp4') }}" type='video/mp4'>
                             <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a web browser that
