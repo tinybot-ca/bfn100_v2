@@ -40,10 +40,22 @@
 
                     <!-- Table of contents -->
                     <li class="list-group-item">
-                        00:00 <a onclick=""> Introduction </a>
+                        00:00 &nbsp;<a href="javascript:void(0)" onclick="seek(0)">Introduction</a>
                     </li>
                     <li class="list-group-item">
-                        00:00 <a onclick=""> Next Section </a>
+                        00:30 &nbsp;<a href="javascript:void(0)" onclick="seek(30)">Body Position</a>
+                    </li>
+                    <li class="list-group-item">
+                        00:57 &nbsp;<a href="javascript:void(0)" onclick="seek(57)">Arm Position</a>
+                    </li>
+                    <li class="list-group-item">
+                        02:02 &nbsp;<a href="javascript:void(0)" onclick="seek(122)">Range of Motion</a>
+                    </li>
+                    <li class="list-group-item">
+                        02:20 &nbsp;<a href="javascript:void(0)" onclick="seek(140)">Shoulderblade Movement</a>
+                    </li>
+                    <li class="list-group-item">
+                        03:03 &nbsp;<a href="javascript:void(0)" onclick="seek(183)">Summary</a>
                     </li>
                     
                 </div><!-- card-body -->
@@ -56,22 +68,50 @@
 <script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
 
 <script>
+    
+    var myVideo = document.getElementById("my-video"); 
 
-function resize() {
-    let videoWidth = $( "#video-container" ).width();
-    let videoRatio = 1.777777777777778;
+    function seek(seconds) {
+        myVideo.currentTime = seconds;
 
-    $( "#my-video" ).css('width', videoWidth);
-    $( "#my-video" ).css('height', videoWidth / videoRatio);
-}
+        if (myVideo.paused) { 
+            myVideo.play();
+        }
+    }
 
-$(function() {
+    // document.onkeypress = function(e) {
+    //     if ((e || window.event).keyCode === 32) {
+    //         e.preventDefault();
+    //         myVideo.paused ? myVideo.play() : myVideo.pause();
+    //     }
+    // };
+
+    document.documentElement.addEventListener('keydown', function (e) {
+        if ( ( e.keycode || e.which ) == 32) {
+            e.preventDefault();
+            myVideo.paused ? myVideo.play() : myVideo.pause();
+        }
+    }, false);
+
+    // Todo: Map arrow keys to rewind or forward +/- 10 secs
+    // https://stackoverflow.com/questions/38604103/how-can-you-make-video-js-skip-forwards-and-backwards-15-seconds
+    
+
+    function resize() {
+        let videoWidth = $( "#video-container" ).width();
+        let videoRatio = 1.777777777777778;
+
+        $( "#my-video" ).css('width', videoWidth);
+        $( "#my-video" ).css('height', videoWidth / videoRatio);
+    }
+
+    $(function() {
+        resize();
+    });
+
+    $( window ).resize(function() {
     resize();
-});
-
-$( window ).resize(function() {
-  resize();
-});
+    });
 
 </script>
 

@@ -99,5 +99,12 @@ body {
     left: 50% !important;
     top: 50% !important;
     margin-left: -1em !important;
-    margin-top: -1em !important;   
+    margin-top: -1em !important;
+}
+
+.vjs-control {
+    outline:none !important;
+    outline-style:none !important;
+    box-shadow:none !important;
+    border-color:transparent !important;
 }
