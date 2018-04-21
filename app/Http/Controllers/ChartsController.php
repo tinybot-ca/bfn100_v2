@@ -12,9 +12,9 @@ class ChartsController extends Controller
     // Current Month
     public function currentMonth() 
     {
-        $series = [];
-        $categories = [];
-        $chart = [];
+        // $series = [];
+        // $categories = [];
+        // $chart = [];
 
         $rows = DB::table('pushups')
                     ->join('users', 'pushups.user_id', '=', 'users.id')
@@ -26,20 +26,36 @@ class ChartsController extends Controller
 
         foreach ($rows as $row) 
         {
+            $temp = array();
+
+            $temp[] = array('name' => $row['name']);
+
+
+
             $series[] = ['name' => $row->name, 'data' => [$row->date, (int)$row->amount]];
         }
 
-        $rows = DB::table('pushups')
-                    ->selectRaw('pushups.date as date')
-                    ->whereYear('datetime', '=', date('Y'))
-                    ->whereMonth('datetime', '=', date('m'))
-                    ->orderBy('date')
-                    ->get();
+        /*
+        ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
 
-        $categories = $rows->pluck('date')->unique();
 
-        $chart['series'] = $series;
-        $chart['categories'] = $categories;
+[
+    { "name":"bernie","data":[400,2400,948,1000,1100,500,1200,300] },{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}
+]
+
+*/
+
+        // $rows = DB::table('pushups')
+        //             ->selectRaw('pushups.date as date')
+        //             ->whereYear('datetime', '=', date('Y'))
+        //             ->whereMonth('datetime', '=', date('m'))
+        //             ->orderBy('date')
+        //             ->get();
+
+        // $categories = $rows->pluck('date')->unique();
+
+        // $chart['series'] = $series;
+        // $chart['categories'] = $categories;
 
         return $chart;
 

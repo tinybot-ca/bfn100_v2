@@ -160,8 +160,7 @@
             complete: function(data) {
                 console.log(data.responseJSON);
                 // console.log(data['categories'].responseJSON);
-
-                // drawMyChart(data.responseJSON);
+                drawMyChart(data.responseJSON);
             }
         });
 
@@ -180,7 +179,7 @@
                     text: 'Total push-ups for April'
                 },
                 xAxis: {
-                    categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
+                    // categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
                 },
                 yAxis: {
                     title: {
