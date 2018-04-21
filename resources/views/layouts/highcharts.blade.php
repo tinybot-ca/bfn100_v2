@@ -179,7 +179,10 @@
                     text: 'Total push-ups for April'
                 },
                 xAxis: {
-                    // categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        day: '%e'
+                    },
                 },
                 yAxis: {
                     title: {
@@ -194,10 +197,42 @@
                         enableMouseTracking: true
                     }
                 },
-                series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]
-            })
-        }
+                data: {
+                    dateFormat: 'YYYY/mm/dd'
+                },
+                series: [{
+name: "ace",
+    data: [
+        [Date.UTC(2018, 03, 16), 100],
+        [Date.UTC(2018, 03, 17), 200],
+        [Date.UTC(2018, 03, 18), 300],
+        [Date.UTC(2018, 03, 19), 400],
+    ]
+}, {
+name: "bern",
+data: [
+        [Date.UTC(2018, 03, 16), 100],
+        [Date.UTC(2018, 03, 17), 150],
+        [Date.UTC(2018, 03, 18), 170],
+        [Date.UTC(2018, 03, 19), 190],
+    ]
+}, {
+name: "chuck",
+data: [
+        [Date.UTC(2018, 03, 16), 100],
+        [Date.UTC(2018, 03, 17), 200],
+        [Date.UTC(2018, 03, 18), 250],
+        [Date.UTC(2018, 03, 19), 300],
+    ]}
+ ]
+                        
+            })}
+
+        drawMyChart();
+
     });
+
+    
 
 </script>
 
