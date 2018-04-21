@@ -153,6 +153,10 @@
     // Current Month -- LINE CHART
     $(function() {
     
+        var myObj = JSON.parse('{"p": 5}');
+        console.log("myObj");
+
+
         var JsonData = $.ajax({
             dataType: "json",
             url: "{{ url('/charts/currentMonth') }}",
@@ -200,31 +204,7 @@
                 data: {
                     dateFormat: 'YYYY/mm/dd'
                 },
-                series: [{
-name: "ace",
-    data: [
-        [Date.UTC(2018, 03, 16), 100],
-        [Date.UTC(2018, 03, 17), 200],
-        [Date.UTC(2018, 03, 18), 300],
-        [Date.UTC(2018, 03, 19), 400],
-    ]
-}, {
-name: "bern",
-data: [
-        [Date.UTC(2018, 03, 16), 100],
-        [Date.UTC(2018, 03, 17), 150],
-        [Date.UTC(2018, 03, 18), 170],
-        [Date.UTC(2018, 03, 19), 190],
-    ]
-}, {
-name: "chuck",
-data: [
-        [Date.UTC(2018, 03, 16), 100],
-        [Date.UTC(2018, 03, 17), 200],
-        [Date.UTC(2018, 03, 18), 250],
-        [Date.UTC(2018, 03, 19), 300],
-    ]}
- ]
+                series: chartData
                         
             })}
 

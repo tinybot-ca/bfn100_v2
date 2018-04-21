@@ -30,7 +30,7 @@ class ChartsController extends Controller
 
         foreach ( $users as $user )
         {
-            $pushups = $user->pushups;
+            $pushups = $user->pushups->sortBy('datetime');
             $sum = 0;
             $data = [];
 
@@ -40,12 +40,15 @@ class ChartsController extends Controller
                 {
                     if ( $pushup->datetime->month == date('m') ) 
                     {
-                        // $data[] = ['Date.UTC(' 
-                        //             . $pushup->datetime->year . ', ' 
-                        //             . ($pushup->datetime->month - 1) . ', ' 
-                        //             . $pushup->datetime->day . ')', ($pushup->amount + $sum)];
+                        $data[] = [('Date.UTC(' 
+                                    . $pushup->datetime->year . ', ' 
+                                    . ($pushup->datetime->month - 1) . ', ' 
+                                    . $pushup->datetime->day . ')'), ($pushup->amount + $sum)];
 
-                        $data[] = [$pushup->datetime->toDateString(), ($pushup->amount + $sum)];
+                        // $data[] = [$pushup->datetime->toDateString(), ($pushup->amount + $sum)];
+
+                        // $data[] = [strtotime($pushup->datetime), ($pushup->amount + $sum)];
+                        
                         $sum += $pushup->amount;
                     }
                 }
