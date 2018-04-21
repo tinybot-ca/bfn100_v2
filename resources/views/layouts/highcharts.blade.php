@@ -153,22 +153,25 @@
     // Current Month -- LINE CHART
     $(function() {
     
-        var myObj = JSON.parse('{"p": 5}');
-        console.log("myObj");
-
-
         var JsonData = $.ajax({
             dataType: "json",
             url: "{{ url('/charts/currentMonth') }}",
             async: true,
             complete: function(data) {
-                console.log(data.responseJSON);
-                // console.log(data['categories'].responseJSON);
-                drawMyChart(data.responseJSON);
+
+                var chartData = data.responseJSON;
+                
+                var categories = chartData['categories'];
+                var series = chartData['series'];
+
+                console.log(categories);
+                console.log(series);
+
+                drawMyChart(categories, series);
             }
         });
 
-        function drawMyChart(chartData) {
+        function drawMyChart(categories, series) {
             var myChart = Highcharts.chart('currentMonth', {
                 credits: {
                     enabled: false
@@ -181,12 +184,6 @@
                 },
                 subtitle: {
                     text: 'Total push-ups for April'
-                },
-                xAxis: {
-                    type: 'datetime',
-                    dateTimeLabelFormats: { // don't display the dummy year
-                        day: '%e'
-                    },
                 },
                 yAxis: {
                     title: {
@@ -202,14 +199,13 @@
                     }
                 },
                 data: {
-                    dateFormat: 'YYYY/mm/dd'
+                    // dateFormat: 'YYYY/mm/dd'
                 },
-                series: chartData
-                        
-            })}
-
-        drawMyChart();
-
+                // type: 'category',
+                categories: categories,
+                series: [{"name":"ace","data":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":100,"17":200,"18":300,"19":300,"20":300,"21":388}},{"name":"bern","data":{"1":0,"2":0,"3":0,"4":0,"5":0,"6":0,"7":0,"8":0,"9":0,"10":0,"11":0,"12":0,"13":0,"14":0,"15":0,"16":0,"17":50,"18":150,"19":150,"20":150,"21":150}}]]
+            }   
+        }
     });
 
     

@@ -13,6 +13,43 @@ class ChartsController extends Controller
     // Current Month
     public function currentMonth() 
     {
+        /* 
+            Let's try a new approach:
+            - Determine today's date
+            - Count the number of days from the first of the month to today's date
+            - This determines the number of categories/series along x-axis
+            - Create a data set for each user, ensuring a "0" entry for days with no pushup record found
+            - Should I pass two separate JSON objects (e.g., one for x-axis series, and a separate for data)
+            - Or try to combine them into one?
+        */
+
+        $chart = [];
+        $day = date('d');
+        $users = User::all();
+
+        foreach ( $users as $user ) 
+        {
+            $data = [];
+
+            $pushups = $user->pushups->sortBy('datetime');
+
+            for ( $n = 1; $n <= $day; $n++)
+            {
+                $chart['categories'][$n] = $n;
+
+                $pushup = $pushups
+                    ->firstWhere('date', '=', date('Y-m-d', strtotime(date('Y') . '-' . date('m') . '-' . $n )));
+
+                $data[$n] = ($pushup->amount ?? 0) + ($data[$n - 1] ?? 0);
+            }
+
+            $chart['series'][] = ['name' => $user->name, 'data' => $data];
+        }
+
+        return $chart;
+
+
+
         // $series = DB::table('pushups')
         //             ->join('users', 'pushups.user_id', '=', 'users.id')
         //             ->selectRaw('users.name as name, sum(pushups.amount) as amount, pushups.date as date')
@@ -57,7 +94,7 @@ class ChartsController extends Controller
             $chart[] = ['name' => $user->name, 'data' => $data];
         }
 
-        return $chart;
+        // return $chart;
     }
 
     // Last Month
