@@ -25,25 +25,31 @@ class ChartsController extends Controller
 
         $chart = [];
         $day = date('d');
-        $users = User::all();
+        $users = User::all()->sortBy('name');
 
         foreach ( $users as $user ) 
         {
             $data = [];
+            $data_named = [];
 
             $pushups = $user->pushups->sortBy('datetime');
 
-            for ( $n = 1; $n <= $day; $n++)
+            for ( $n = 0; $n < $day; $n++)
             {
-                $chart['categories'][$n] = $n;
+                $chart['categories'][$n] = $n + 1;
+                
+                $date = date('Y-m-d', strtotime(date('Y') . '-' . date('m') . '-' . ($n + 1) ));
 
-                $pushup = $pushups
-                    ->firstWhere('date', '=', date('Y-m-d', strtotime(date('Y') . '-' . date('m') . '-' . $n )));
-
-                $data[$n] = ($pushup->amount ?? 0) + ($data[$n - 1] ?? 0);
+                $pushup = $pushups->firstWhere('date', $date);
+                
+                $amount = (int)($pushup->amount ?? 0) + (int)($data[$n - 1] ?? 0);
+                
+                $data[$n] = $amount;
+                
+                $data_named[$n] = ['name' => $date, 'y' => $amount];
             }
 
-            $chart['series'][] = ['name' => $user->name, 'data' => $data];
+            $chart['series'][] = ['name' => $user->name, 'data' => $data_named];
         }
 
         return $chart;

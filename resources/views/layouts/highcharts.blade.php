@@ -173,6 +173,7 @@
 
         function drawMyChart(categories, series) {
             var myChart = Highcharts.chart('currentMonth', {
+
                 credits: {
                     enabled: false
                 },
@@ -185,6 +186,9 @@
                 subtitle: {
                     text: 'Total push-ups for April'
                 },
+                xAxis: {
+                    categories: categories
+                },
                 yAxis: {
                     title: {
                         text: 'Push-ups'
@@ -193,22 +197,17 @@
                 plotOptions: {
                     line: {
                         dataLabels: {
-                            enabled: true
+                            enabled: false
                         },
                         enableMouseTracking: true
                     }
                 },
-                data: {
-                    // dateFormat: 'YYYY/mm/dd'
-                },
                 type: 'category',
-                categories: categories,
                 series: series
-            })   
+
+            }); // Highcharts options
         }
     });
-
-    
 
 </script>
 
