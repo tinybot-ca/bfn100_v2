@@ -77,23 +77,107 @@ class ChartsController extends Controller
     public function rollingHistory()
     {
         $chart = [];
-
-        $rows = DB::table('pushups')
-                    ->join('users', 'pushups.user_id', '=', 'users.id')
-                    ->selectRaw('users.name as name, year(date) as year, month(date) as month, sum(pushups.amount) as amount, count(date)')
-                    ->whereRaw('date > DATE_SUB(now(), INTERVAL 6 MONTH)')
-                    ->groupBy('year', 'month', 'name')
-                    ->orderBy('year', 'month', 'name')
-                    ->get();
-
-        foreach ($rows as $row) 
+        
+        // categories
+        for ($n = 5; $n >= 0; $n--)
         {
-            $amount = (int) ($row->amount ?? 0);
-
-            $chart['series'][$row->name][] = $amount;
+            $date = date('Y-m', strtotime('-' . $n . ' months'));
+            $chart['categories'][] = date('M Y', strtotime($date));
         }
+
+        // series
+        $users = User::all()->sortBy('name');
+        $series = [];
+
+        foreach ($users as $user)
+        {
+            $amount = [];
+            
+            for ($n = 5; $n >= 0; $n--)
+            {
+                $date = date('Y-m', strtotime('-' . $n . ' months'));
+
+                $pushups = Pushup::where('user_id', '=', $user->id)
+                                    ->orderBy('datetime')
+                                    ->whereYear('datetime', date('Y', strtotime($date)))
+                                    ->whereMonth('datetime', date('m', strtotime($date)))
+                                    ->get();
+                
+                $amount[] = $pushups->sum('amount') ?? 0;
+            }
+
+            $series[] = ['name' => $user->name, 'data' => $amount];
+        }
+
+        $chart['series'] = $series;
 
         return $chart;
     }
 
+    public function overall()
+    {
+        $chart = [];
+        
+        $users = User::all()->sortBy('name');
+
+        foreach ($users as $user)
+        {
+            $amount = $user->pushups->sum('amount');
+
+            $series[] = ['name' => $user->name, 'y' => $amount];
+        }
+
+        $chart['series'] = $series;
+
+        return $chart;
+    }
+
+    public function annual()
+    {
+        $chart = [];
+
+        // Find out how many years exist
+        $years = Pushup::selectRaw("DISTINCT YEAR(date) as year")->latest('year')->get();
+
+        // categories
+        foreach ($years as $year) {
+            $chart['categories'][] = $year['year'];
+        }
+
+        // series
+        $users = User::all()->sortBy('name');
+
+        foreach ($users as $user)
+        {
+            $data = [];
+
+            foreach ($years as $year)
+            {
+                $amount = Pushup::where('user_id', '=', $user->id)->whereYear('datetime', '=', $year['year'])->sum('amount');
+
+                // var_dump($amount);
+
+                $data[] = (int) ($amount ?? 0);
+            }
+
+            $series[] = ['name' => $user->name, 'data' => $data];
+        }
+
+        $chart['series'] = $series;
+
+        return $chart;
+    }
+
+    public function wordCloud()
+    {
+        $chart = '';
+        $pushups = Pushup::all();
+
+        foreach ($pushups as $pushup)
+        {
+            $chart .= $pushup->comment ?  $pushup->comment . ', ' : '';
+        }
+
+        return $chart;
+    }
 }

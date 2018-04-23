@@ -16,11 +16,11 @@
                     <br />
                     <div id="rollingHistory" class=""></div>
                     <br />
-                    <div id="chart2" class=""></div>
+                    <div id="overall" class=""></div>
                     <br />
-                    <div id="chart3" class=""></div>
+                    <div id="annual" class=""></div>
                     <br />
-                    <div id="chart1" class=""></div>
+                    <div id="wordCloud" class=""></div>
                     
                 </div><!-- card-body -->
 
@@ -182,8 +182,8 @@
                 var categories = chartData['categories'];
                 var series = chartData['series'];
 
-                console.log(categories);
-                console.log(series);
+                // console.log(categories);
+                // console.log(series);
 
                 drawMyChart(categories, series);
             }
@@ -192,6 +192,9 @@
         function drawMyChart(categories, series) {
             var myChart = Highcharts.chart('rollingHistory', {
 
+                credits: {
+                    enabled: false
+                },
                 chart: {
                     type: 'area'
                 },
@@ -202,7 +205,7 @@
                     text: 'Rolling 6 month history'
                 },
                 xAxis: {
-                    categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+                    categories: categories,
                     tickmarkPlacement: 'on',
                     title: {
                         enabled: false
@@ -210,17 +213,12 @@
                 },
                 yAxis: {
                     title: {
-                        text: 'Billions'
+                        text: 'Push-ups'
                     },
-                    labels: {
-                        formatter: function () {
-                            return this.value / 1000;
-                        }
-                    }
                 },
                 tooltip: {
                     split: true,
-                    valueSuffix: ' millions'
+                    valueSuffix: ' push-ups'
                 },
                 plotOptions: {
                     area: {
@@ -233,22 +231,7 @@
                         }
                     }
                 },
-                series: [{
-                    name: 'Asia',
-                    data: [502, 635, 809, 947, 1402, 3634, 5268]
-                }, {
-                    name: 'Africa',
-                    data: [106, 107, 111, 133, 221, 767, 1766]
-                }, {
-                    name: 'Europe',
-                    data: [163, 203, 276, 408, 547, 729, 628]
-                }, {
-                    name: 'America',
-                    data: [18, 31, 54, 156, 339, 818, 1201]
-                }, {
-                    name: 'Oceania',
-                    data: [2, 2, 2, 6, 13, 30, 46]
-                }]
+                series: series
 
             }); // Highcharts options
         }
@@ -256,114 +239,177 @@
 
 </script>
 
-<script> // WORD CLOUD -- TBD
+<script> // Overall -- PIE CHART
 
-</script>
-
-
-<script> // myChart1 -- COLUMN CHART -- Total by Year
-    
     $(function () {
-        var myChart1 = Highcharts.chart('chart1', {
-            credits: {
-                enabled: false
-            },
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Annual'
-            },
-            subtitle: {
-                text: 'Total push-ups by year'
-            },
-            xAxis: {
-                categories: ['2018', '2017']
-            },
-            yAxis: {
-                title: {
-                    text: 'Push-ups'
+
+        var JsonData = $.ajax({
+                dataType: "json",
+                url: "{{ url('/charts/overall') }}",
+                async: true,
+                complete: function(data) {
+
+                    var chartData = data.responseJSON;
+                    
+                    var categories = chartData['categories'];
+                    var series = chartData['series'];
+
+                    // console.log(categories);
+                    // console.log(series);
+
+                    drawMyChart(categories, series);
                 }
-            },
-            series: [{"name":"bernie","data":[3100,4748]},{"name":"moti","data":[3520,5380]},{"name":"nikosuave","data":[760,0]},{"name":"ashman","data":[470,0]}]      });
-    });
-
-</script>
-
-<script> // myChart2 -- PIE CHART -- Total Overall
+            });
     
-    $(function () {
-        var myChart2 = Highcharts.chart('chart2', {
-            credits: {
-                enabled: false
-            },
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: 'Overall'
-            },
-            subtitle: {
-                text: 'Total overall push-ups'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>:<br />{point.y:,.0f}',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+        function drawMyChart(categories, series) {
+            var myChart = Highcharts.chart('overall', {
+
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Overall'
+                },
+                subtitle: {
+                    text: 'Total overall push-ups'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>:<br />{point.y:,.0f}',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
                         }
                     }
+                },
+                series: [{
+                    name: 'Push-ups',
+                    colorByPoint: true,
+                    data: series
+                }]
+            });
+        }
+    });
+
+</script>
+    
+<script> // Annual -- COLUMN CHART
+    
+    $(function () {
+
+        var JsonData = $.ajax({
+                dataType: "json",
+                url: "{{ url('/charts/annual') }}",
+                async: true,
+                complete: function(data) {
+
+                    var chartData = data.responseJSON;
+                    
+                    var categories = chartData['categories'];
+                    var series = chartData['series'];
+
+                    // console.log(categories);
+                    // console.log(series);
+
+                    drawMyChart(categories, series);
                 }
-            },
-            series: [{
-                name: 'Push-ups',
-                colorByPoint: true,
-                data: [{"name":"bernie","y":7848},{"name":"moti","y":8900},{"name":"nikosuave","y":760},{"name":"ashman","y":470}]          }]
-        });
+            });
+
+        function drawMyChart(categories, series) {
+            var myChart = Highcharts.chart('annual', {
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Annual'
+                },
+                subtitle: {
+                    text: 'Total push-ups by year'
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    title: {
+                        text: 'Push-ups'
+                    }
+                },
+                series: series    
+            });
+        }
     });
 
 </script>
 
-<script> // myChart3 -- LINE CHART -- Total by Month
+<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+<script> // Comment Cloud -- WORD CLOUD
 
     $(function () {
-        var myChart3 = Highcharts.chart('chart3', {
-            credits: {
-                enabled: false
-            },
-            chart: {
-                type: 'line'
-            },
-            title: {
-                text: 'Monthly'
-            },
-            subtitle: {
-                text: 'Total push-ups by month'
-            },
-            xAxis: {
-                categories: ['Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']
-            },
-            yAxis: {
+
+        var JsonData = $.ajax({
+                dataType: "json",
+                url: "{{ url('/charts/wordCloud') }}",
+                async: true,
+                complete: function(data) {
+
+                    var chartData = data.responseText;
+                    
+                    // console.log(chartData);
+
+                    drawMyChart(chartData);
+                }
+            });
+
+        function drawMyChart(text) {
+
+            var lines = text.split(/[,\. ]+/g),
+                data = Highcharts.reduce(lines, function (arr, word) {
+                    var obj = Highcharts.find(arr, function (obj) {
+                        return obj.name === word;
+                    });
+                    if (obj) {
+                        obj.weight += 1;
+                    } else {
+                        obj = {
+                            name: word,
+                            weight: 1
+                        };
+                        arr.push(obj);
+                    }
+                    return arr;
+                }, []);
+
+            Highcharts.chart('wordCloud', {
+                series: [{
+                    type: 'wordcloud',
+                    data: data,
+                    name: 'Occurrences'
+                }],
                 title: {
-                    text: 'Push-ups'
+                    text: 'Word Cloud'
+                },
+                subtitle: {
+                    text: 'Occurrence generated comment algorithm'
+                },
+                credits: {
+                    enabled: false
                 }
-            },
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-                    enableMouseTracking: true
-                }
-            },
-            series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]      
-        });
+            });
+        }
     });
+
 </script>

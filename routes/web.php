@@ -30,5 +30,8 @@ Route::patch('/users/{user}', 'RegistrationController@update');
 Route::get('/charts/currentMonth', 'ChartsController@currentMonth');
 Route::get('/charts/lastMonth', 'ChartsController@lastMonth');
 Route::get('/charts/rollingHistory', 'ChartsController@rollingHistory');
+Route::get('/charts/overall', 'ChartsController@overall');
+Route::get('/charts/annual', 'ChartsController@annual');
+Route::get('/charts/wordCloud', 'ChartsController@wordCloud');
 
 Route::view('/tutorial', 'pushups.tutorial')->middleware('auth');
