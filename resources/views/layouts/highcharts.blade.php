@@ -28,7 +28,8 @@
     </div>
 </div><!-- container -->
         
-<script>
+<script> // Highcharts Options
+
     Highcharts.setOptions({
         lang: {
             thousandsSep: ','
@@ -47,8 +48,125 @@
             plotBorderWidth: 0
         }
     });
+
+</script>
+
+<script> // Current Month -- LINE CHART
     
-    // myChart1 -- COLUMN CHART -- Total by Year
+    $(function() {
+    
+        var JsonData = $.ajax({
+            dataType: "json",
+            url: "{{ url('/charts/currentMonth') }}",
+            async: true,
+            complete: function(data) {
+
+                var chartData = data.responseJSON;
+                
+                var categories = chartData['categories'];
+                var series = chartData['series'];
+
+                console.log(categories);
+                console.log(series);
+
+                drawMyChart(categories, series);
+            }
+        });
+
+        function drawMyChart(categories, series) {
+            var myChart = Highcharts.chart('currentMonth', {
+
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Current Month'
+                },
+                subtitle: {
+                    text: 'Total push-ups for {{ date('F') }}'
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    title: {
+                        text: 'Push-ups'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: false
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                type: 'category',
+                series: series
+
+            }); // Highcharts options
+        }
+    });
+
+</script>
+    
+<script> // Last Month -- BAR CHART
+    
+    $(function() {
+
+        var JsonData = $.ajax({
+            dataType: "json",
+            url: "{{ url('/charts/lastMonth') }}",
+            async: true,
+            complete: function(data) {
+                // console.log(data.responseJSON);
+                drawMyChart(data.responseJSON);
+            }
+        });
+    
+        function drawMyChart(chartData) {
+            var myChart = Highcharts.chart('lastMonth', {
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Last Month'
+                },
+                subtitle: {
+                    text: 'Total push-ups for {{ date("F", strtotime("first day of previous month")) }}'
+                },
+                xAxis: {
+                    categories: ['{{ date("F", strtotime("first day of previous month")) }}']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Push-ups'
+                    }
+                },
+                plotOptions: {
+                    bar: {
+                        dataLabels: {
+                            enabled: true
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                series: chartData
+            })
+        }
+    });
+
+</script>
+
+<script> // myChart1 -- COLUMN CHART -- Total by Year
+    
     $(function () {
         var myChart1 = Highcharts.chart('chart1', {
             credits: {
@@ -73,8 +191,11 @@
             },
             series: [{"name":"bernie","data":[3100,4748]},{"name":"moti","data":[3520,5380]},{"name":"nikosuave","data":[760,0]},{"name":"ashman","data":[470,0]}]      });
     });
+
+</script>
+
+<script> // myChart2 -- PIE CHART -- Total Overall
     
-    // myChart2 -- PIE CHART -- Total Overall
     $(function () {
         var myChart2 = Highcharts.chart('chart2', {
             credits: {
@@ -111,8 +232,11 @@
                 data: [{"name":"bernie","y":7848},{"name":"moti","y":8900},{"name":"nikosuave","y":760},{"name":"ashman","y":470}]          }]
         });
     });
-    
-    // myChart3 -- LINE CHART -- Total by Month
+
+</script>
+
+<script> // myChart3 -- LINE CHART -- Total by Month
+
     $(function () {
         var myChart3 = Highcharts.chart('chart3', {
             credits: {
@@ -146,120 +270,4 @@
             series: [{"name":"bernie","data":[400,2400,948,1000,1100,500,1200,300]},{"name":"moti","data":[210,1570,1800,1800,1200,840,1180,300]},{"name":"nikosuave","data":[0,0,0,0,0,0,460,300]},{"name":"ashman","data":[0,0,0,0,0,0,270,200]}]      
         });
     });
-</script>
-        
-<script>
-
-    // Current Month -- LINE CHART
-    $(function() {
-    
-        var JsonData = $.ajax({
-            dataType: "json",
-            url: "{{ url('/charts/currentMonth') }}",
-            async: true,
-            complete: function(data) {
-
-                var chartData = data.responseJSON;
-                
-                var categories = chartData['categories'];
-                var series = chartData['series'];
-
-                console.log(categories);
-                console.log(series);
-
-                drawMyChart(categories, series);
-            }
-        });
-
-        function drawMyChart(categories, series) {
-            var myChart = Highcharts.chart('currentMonth', {
-
-                credits: {
-                    enabled: false
-                },
-                chart: {
-                    type: 'line'
-                },
-                title: {
-                    text: 'Current Month'
-                },
-                subtitle: {
-                    text: 'Total push-ups for April'
-                },
-                xAxis: {
-                    categories: categories
-                },
-                yAxis: {
-                    title: {
-                        text: 'Push-ups'
-                    }
-                },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: false
-                        },
-                        enableMouseTracking: true
-                    }
-                },
-                type: 'category',
-                series: series
-
-            }); // Highcharts options
-        }
-    });
-
-</script>
-
-<script>
-    
-    // Last Month -- BAR CHART
-    $(function() {
-
-        var JsonData = $.ajax({
-            dataType: "json",
-            url: "{{ url('/charts/lastMonth') }}",
-            async: true,
-            complete: function(data) {
-                // console.log(data.responseJSON);
-                drawMyChart(data.responseJSON);
-            }
-        });
-    
-        function drawMyChart(chartData) {
-            var myChart = Highcharts.chart('lastMonth', {
-                credits: {
-                    enabled: false
-                },
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Last Month'
-                },
-                subtitle: {
-                    text: 'Total push-ups for March'
-                },
-                xAxis: {
-                    categories: ['March']
-                },
-                yAxis: {
-                    min: 0,
-                    title: {
-                        text: 'Push-ups'
-                    }
-                },
-                plotOptions: {
-                    line: {
-                        dataLabels: {
-                            enabled: true
-                        },
-                        enableMouseTracking: true
-                    }
-                },
-                series: chartData
-            })
-        }
-    });
-
 </script>
