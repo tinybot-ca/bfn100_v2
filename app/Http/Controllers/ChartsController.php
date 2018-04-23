@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class ChartsController extends Controller
 {
-    // Current Month
     public function currentMonth() 
     {
         /* 
@@ -53,57 +52,8 @@ class ChartsController extends Controller
         }
 
         return $chart;
-
-
-
-        // $series = DB::table('pushups')
-        //             ->join('users', 'pushups.user_id', '=', 'users.id')
-        //             ->selectRaw('users.name as name, sum(pushups.amount) as amount, pushups.date as date')
-        //             ->whereYear('datetime', '=', date('Y'))
-        //             ->whereMonth('datetime', '=', date('m'))
-        //             ->groupBy('name', 'date')
-        //             ->get();
-
-        // $names = array();
-        // $data = array();
-
-
-        $users = User::all();
-        $chart = [];
-
-        foreach ( $users as $user )
-        {
-            $pushups = $user->pushups->sortBy('datetime');
-            $sum = 0;
-            $data = [];
-
-            foreach ( $pushups as $pushup ) 
-            {
-                if ( $pushup->datetime->year == date('Y') ) 
-                {
-                    if ( $pushup->datetime->month == date('m') ) 
-                    {
-                        $data[] = [('Date.UTC(' 
-                                    . $pushup->datetime->year . ', ' 
-                                    . ($pushup->datetime->month - 1) . ', ' 
-                                    . $pushup->datetime->day . ')'), ($pushup->amount + $sum)];
-
-                        // $data[] = [$pushup->datetime->toDateString(), ($pushup->amount + $sum)];
-
-                        // $data[] = [strtotime($pushup->datetime), ($pushup->amount + $sum)];
-                        
-                        $sum += $pushup->amount;
-                    }
-                }
-            }
-
-            $chart[] = ['name' => $user->name, 'data' => $data];
-        }
-
-        // return $chart;
     }
 
-    // Last Month
     public function lastMonth()
     {
         $chart = [];
@@ -119,6 +69,28 @@ class ChartsController extends Controller
         foreach ($rows as $row) 
         {
             $chart[] = ['name' => $row->name, 'data' => array((int)$row->amount)];
+        }
+
+        return $chart;
+    }
+
+    public function rollingHistory()
+    {
+        $chart = [];
+
+        $rows = DB::table('pushups')
+                    ->join('users', 'pushups.user_id', '=', 'users.id')
+                    ->selectRaw('users.name as name, year(date) as year, month(date) as month, sum(pushups.amount) as amount, count(date)')
+                    ->whereRaw('date > DATE_SUB(now(), INTERVAL 6 MONTH)')
+                    ->groupBy('year', 'month', 'name')
+                    ->orderBy('year', 'month', 'name')
+                    ->get();
+
+        foreach ($rows as $row) 
+        {
+            $amount = (int) ($row->amount ?? 0);
+
+            $chart['series'][$row->name][] = $amount;
         }
 
         return $chart;

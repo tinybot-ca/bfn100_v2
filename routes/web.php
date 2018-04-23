@@ -29,5 +29,6 @@ Route::patch('/users/{user}', 'RegistrationController@update');
 
 Route::get('/charts/currentMonth', 'ChartsController@currentMonth');
 Route::get('/charts/lastMonth', 'ChartsController@lastMonth');
+Route::get('/charts/rollingHistory', 'ChartsController@rollingHistory');
 
 Route::view('/tutorial', 'pushups.tutorial')->middleware('auth');

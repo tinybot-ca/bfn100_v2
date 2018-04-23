@@ -14,6 +14,8 @@
                     <br />
                     <div id="lastMonth" class=""></div>
                     <br />
+                    <div id="rollingHistory" class=""></div>
+                    <br />
                     <div id="chart2" class=""></div>
                     <br />
                     <div id="chart3" class=""></div>
@@ -66,8 +68,8 @@
                 var categories = chartData['categories'];
                 var series = chartData['series'];
 
-                console.log(categories);
-                console.log(series);
+                // console.log(categories);
+                // console.log(series);
 
                 drawMyChart(categories, series);
             }
@@ -164,6 +166,73 @@
     });
 
 </script>
+
+<script> // Rolling History -- STACKED AREA
+
+    $(function() {
+        
+        var JsonData = $.ajax({
+            dataType: "json",
+            url: "{{ url('/charts/rollingHistory') }}",
+            async: true,
+            complete: function(data) {
+
+                var chartData = data.responseJSON;
+                
+                var categories = chartData['categories'];
+                var series = chartData['series'];
+
+                console.log(categories);
+                console.log(series);
+
+                drawMyChart(categories, series);
+            }
+        });
+
+        function drawMyChart(categories, series) {
+            var myChart = Highcharts.chart('rollingHistory', {
+
+                credits: {
+                    enabled: false
+                },
+                chart: {
+                    type: 'line'
+                },
+                title: {
+                    text: 'Current Month'
+                },
+                subtitle: {
+                    text: 'Total push-ups for {{ date('F') }}'
+                },
+                xAxis: {
+                    categories: categories
+                },
+                yAxis: {
+                    title: {
+                        text: 'Push-ups'
+                    }
+                },
+                plotOptions: {
+                    line: {
+                        dataLabels: {
+                            enabled: false
+                        },
+                        enableMouseTracking: true
+                    }
+                },
+                type: 'category',
+                series: series
+
+            }); // Highcharts options
+        }
+    });
+
+</script>
+
+<script> // WORD CLOUD -- TBD
+
+</script>
+
 
 <script> // myChart1 -- COLUMN CHART -- Total by Year
     
