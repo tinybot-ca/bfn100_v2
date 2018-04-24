@@ -105,6 +105,6 @@
 
 </script>
 
-{{-- <script src="https://vjs.zencdn.net/6.6.3/video.js"></script> --}}
+<script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
 
 @endsection
