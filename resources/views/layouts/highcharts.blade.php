@@ -403,7 +403,7 @@
                     text: 'Word Cloud'
                 },
                 subtitle: {
-                    text: 'Occurrence generated comment algorithm'
+                    text: 'Occurrence-based word cloud'
                 },
                 credits: {
                     enabled: false
