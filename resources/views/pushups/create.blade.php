@@ -24,7 +24,7 @@
                     
                     {{-- @include ('layouts.errors') --}}
 
-                    <form method="POST" action="/pushups">
+                    <form method="POST" action="/pushups" novalidate>
                         {{ csrf_field() }}
 
                         <div class="form-group row">
@@ -33,7 +33,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" id="date" name="date" value="{{ old('date', $date) }}" novalidate />
+                                <input type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" id="date" name="date" value="{{ old('date', $date) }}" />
 
                                 @if ($errors->has('date'))
                                     <span class="invalid-feedback">
@@ -49,7 +49,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" id="time" name="time" value="{{ old('time', $time) }}" novalidate />
+                                <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" id="time" name="time" value="{{ old('time', $time) }}" />
 
                                 @if ($errors->has('time'))
                                     <span class="invalid-feedback">
