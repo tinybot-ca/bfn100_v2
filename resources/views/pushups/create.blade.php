@@ -33,7 +33,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" id="date" name="date" value="{{ old('date', $date) }}" />
+                                <input type="date" class="form-control{{ $errors->has('date') ? ' is-invalid' : '' }}" id="date" name="date" value="{{ old('date', $date) }}" novalidate />
 
                                 @if ($errors->has('date'))
                                     <span class="invalid-feedback">
@@ -49,7 +49,7 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" id="time" name="time" value="{{ old('time', $time) }}" />
+                                <input type="time" class="form-control{{ $errors->has('time') ? ' is-invalid' : '' }}" id="time" name="time" value="{{ old('time', $time) }}" novalidate />
 
                                 @if ($errors->has('time'))
                                     <span class="invalid-feedback">
