@@ -2,10 +2,10 @@
 
 @section ('content')
 
-<link href="http://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+<link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 
 <!-- If you'd like to support IE8 -->
-<script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -26,7 +26,7 @@
                             <source src="{{ asset('videos/The_Perfect_Push_Up.mp4') }}" type='video/mp4'>
                             <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a web browser that
-                            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                             </p>
                         </video>
 
@@ -65,7 +65,7 @@
     </div><!-- row -->
 </div><!-- container -->
 
-<script src="http://vjs.zencdn.net/6.6.3/video.js"></script>
+<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
 
 <script>
     
