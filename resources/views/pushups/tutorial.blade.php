@@ -7,8 +7,6 @@
 <!-- If you'd like to support IE8 -->
 <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 
-<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -106,5 +104,7 @@
     });
 
 </script>
+
+<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
 
 @endsection
