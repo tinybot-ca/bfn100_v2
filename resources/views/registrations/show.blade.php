@@ -61,7 +61,7 @@
                         <tbody>
                             @foreach ($pushups as $pushup)
                             <tr>
-                                <td nowrap><a href="/pushups/{{ $pushup->id }}">{{ $pushup->datetime->toDayDateTimeString() }}</a></td>
+                                <td nowrap><a href="/pushups/{{ $pushup->id }}">{{ $pushup->datetime->toFormattedDateString() }}</a></td>
                                 <td>{{ $pushup->amount }}</td>
                                 <td>{{ $pushup->comment }}</td>
                             </tr>
