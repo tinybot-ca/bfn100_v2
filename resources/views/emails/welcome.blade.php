@@ -3,8 +3,10 @@
 
 No PAIN no GAIN! Time to get those reps in! You'll receive super-motivating email notifications whenever another member of BFN100 posts their daily results. (Don't worry, you can always [unsubscribe](https://www.youtube.com/watch?v=dQw4w9WgXcQ) from them.)
 
-@component('mail::button', ['url' => env('APP_URL')])
-Visit BFN100
+Before you start cranking out the reps, I highly recommend watching the following video! Good form is critical for avoiding injury.
+
+@component('mail::button', ['url' => url('/tutorial')])
+Watch Tutorial
 @endcomponent
 
 @component('mail::panel', ['url' => ''])
