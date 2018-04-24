@@ -7,6 +7,8 @@
 <!-- If you'd like to support IE8 -->
 <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 
+<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -65,8 +67,6 @@
     </div><!-- row -->
 </div><!-- container -->
 
-{{-- <script src="https://vjs.zencdn.net/6.6.3/video.js"></script> --}}
-
 <script>
     
     var myVideo = document.getElementById("my-video"); 
@@ -79,13 +79,6 @@
         }
     }
 
-    // document.onkeypress = function(e) {
-    //     if ((e || window.event).keyCode === 32) {
-    //         e.preventDefault();
-    //         myVideo.paused ? myVideo.play() : myVideo.pause();
-    //     }
-    // };
-
     document.documentElement.addEventListener('keydown', function (e) {
         if ( ( e.keycode || e.which ) == 32) {
             e.preventDefault();
@@ -95,7 +88,6 @@
 
     // Todo: Map arrow keys to rewind or forward +/- 10 secs
     // https://stackoverflow.com/questions/38604103/how-can-you-make-video-js-skip-forwards-and-backwards-15-seconds
-    
 
     function resize() {
         let videoWidth = $( "#video-container" ).width();
