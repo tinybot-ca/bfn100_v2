@@ -65,7 +65,7 @@
     </div><!-- row -->
 </div><!-- container -->
 
-<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+{{-- <script src="https://vjs.zencdn.net/6.6.3/video.js"></script> --}}
 
 <script>
     
