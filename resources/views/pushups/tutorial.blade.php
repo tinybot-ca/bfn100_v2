@@ -110,7 +110,7 @@
     });
 
     $( window ).resize(function() {
-    resize();
+        resize();
     });
 
 </script>
