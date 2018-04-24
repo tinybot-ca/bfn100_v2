@@ -28,6 +28,13 @@
                             </p>
                         </video>
 
+                        <video poster="{{ asset('images/poster.png') }}" id="my-video" playsinline controls>
+                            <source src="{{ asset('videos/The_Perfect_Push_Up.mp4') }}" type="video/mp4">
+                        
+                            <!-- Captions are optional -->
+                            {{-- <track kind="captions" label="English captions" src="/path/to/captions.vtt" srclang="en" default> --}}
+                        </video>
+
                     </div>
 
                     <!-- Description -->
@@ -63,9 +70,11 @@
     </div><!-- row -->
 </div><!-- container -->
 
-<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
+<script src="https://cdn.plyr.io/3.2.1/plyr.js"></script>
 
 <script>
+
+    const player = new Plyr('#my-video');
     
     var myVideo = document.getElementById("my-video"); 
 
@@ -96,17 +105,12 @@
     }
 
     $(function() {
-        resize();
+        // resize();
     });
 
     $( window ).resize(function() {
-        resize();
+        // resize();
     });
-
-    // videojs("my-video").ready(function () {
-    //     var myPlayer = this;
-    //     //myPlayer.play();
-    // });
 
 </script>
 

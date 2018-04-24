@@ -20,7 +20,7 @@
    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.2.1/plyr.css">
     <link href="{{ asset('css/public.css') }}" rel="stylesheet">
     
     <!-- Google Fonts -->
