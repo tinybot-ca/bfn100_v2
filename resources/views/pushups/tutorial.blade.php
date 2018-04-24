@@ -103,10 +103,10 @@
         resize();
     });
 
-    videojs("my-video").ready(function () {
-        var myPlayer = this;
-        //myPlayer.play();
-    });
+    // videojs("my-video").ready(function () {
+    //     var myPlayer = this;
+    //     //myPlayer.play();
+    // });
 
 </script>
 
