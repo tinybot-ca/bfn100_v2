@@ -27,7 +27,7 @@ class LogSuccessfulLogout
      */
     public function handle(Logout $event)
     {
-        $geoplugin =  var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=' . request()->ip())));
+        // $geoplugin =  var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip=' . request()->ip())));
 
         Activity::create([
             'type' => 'Logout',

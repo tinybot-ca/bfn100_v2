@@ -81,30 +81,3 @@ body {
 .nav-item {
     font-family: 'Roboto Mono', monospace;
 }
-
-.video-js {
-    font-size: 15px !important;
-}
-
-.vjs-default-skin .vjs-big-play-button {
-    /* The font size is what makes the big play button...big. 
-       All width/height values use ems, which are a multiple of the font size.
-       If the .video-js font-size is 10px, then 3em equals 30px.*/
-    font-size: 3em !important;
-    line-height: 2em !important;
-    height: 2em !important;
-    width: 2em !important;
-    border-radius: 2em !important;
-
-    left: 50% !important;
-    top: 50% !important;
-    margin-left: -1em !important;
-    margin-top: -1em !important;
-}
-
-.vjs-control {
-    outline:none !important;
-    outline-style:none !important;
-    box-shadow:none !important;
-    border-color:transparent !important;
-}
