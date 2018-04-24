@@ -2,10 +2,11 @@
 
 @section ('content')
 
+<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
 <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
 
 <!-- If you'd like to support IE8 -->
-<script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+{{-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> --}}
 
 <div class="container">
     <div class="row justify-content-center">
@@ -22,7 +23,7 @@
                     <!-- Video -->
                     <div id="video-container">
                     
-                        <video id="my-video" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" width="688" data-setup="{}" poster="{{ asset('images/poster.png') }}">
+                        <video id="my-video" class="video-js vjs-default-skin vjs-big-play-centered" preload="auto" width="688" poster="{{ asset('images/poster.png') }}">
                             <source src="{{ asset('videos/The_Perfect_Push_Up.mp4') }}" type='video/mp4'>
                             <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -104,7 +105,5 @@
     });
 
 </script>
-
-<script src="https://vjs.zencdn.net/6.6.3/video.js"></script>
 
 @endsection
