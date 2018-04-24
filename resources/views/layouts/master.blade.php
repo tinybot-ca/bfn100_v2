@@ -21,8 +21,8 @@
    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/public.css') }}" rel="stylesheet">
     <link href="https://vjs.zencdn.net/6.6.3/video-js.css" rel="stylesheet">
+    <link href="{{ asset('css/public.css') }}" rel="stylesheet">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
