@@ -43,5 +43,11 @@ class LogPushup
                 ' | Comment: ' . $pushup->comment
 
             ]);
+
+        Queue::push(function($job) 
+        {
+            Log::info('This is where we will send a pushup notification to all users.');
+            $job->delete();
+        });
     }
 }
