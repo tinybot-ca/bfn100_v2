@@ -6,6 +6,9 @@ use App\Events\PushupActivity;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Activity;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\PushupNotification;
+use App\User;
 
 class LogPushup
 {
@@ -44,10 +47,19 @@ class LogPushup
 
             ]);
 
-        Queue::push(function($job) 
+        // Pushup Notification email
+        $users = User::all();
+
+        foreach ($users as $user)
         {
-            Log::info('This is where we will send a pushup notification to all users.');
-            $job->delete();
-        });
+            Mail::to($user)->send(new PushupNotification($user, $pushup));
+        }
+
+
+        // Job::push(function($job) 
+        // {
+        //     Log::info('This is where we will send a pushup notification to all users.');
+        //     $job->delete();
+        // });
     }
 }

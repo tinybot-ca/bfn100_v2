@@ -6,12 +6,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use App\User;
 use App\Pushup;
 
 class PushupNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $user;
     public $pushup;
 
     /**
@@ -19,8 +21,9 @@ class PushupNotification extends Mailable
      *
      * @return void
      */
-    public function __construct(Pushup $pushup)
+    public function __construct(User $user, Pushup $pushup)
     {
+        $this->user = $user;
         $this->pushup = $pushup;
     }
 
@@ -31,6 +34,8 @@ class PushupNotification extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.pushup');
+        $subject = 'BFN100: ' . $this->pushup->user->name . ' just pounded out ' . $this->pushup->amount . ' push-ups!';
+
+        return $this->markdown('emails.pushup')->subject($subject);
     }
 }

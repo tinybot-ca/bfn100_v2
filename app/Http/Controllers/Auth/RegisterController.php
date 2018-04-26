@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Mail\Welcome;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -75,7 +76,7 @@ class RegisterController extends Controller
         session()->flash('message', $success_message);
 
         // Welcome email
-        \Mail::to($user)->send(new Welcome($user));
+        Mail::to($user)->send(new Welcome($user));
 
         return $user;
     }

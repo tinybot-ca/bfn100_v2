@@ -31,7 +31,7 @@ return [
     'connections' => [
 
         'sync' => [
-            'driver' => 'beanstalkd',
+            'driver' => 'sync',
         ],
 
         'database' => [
