@@ -11,7 +11,7 @@
             @endif
 
             <p>
-                Local timezone: UNKNOWN
+                Timezone: {{ date_default_timezone_get() }}
             </p>
             
             <p>
