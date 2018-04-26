@@ -52,7 +52,7 @@ class LogPushup
 
         foreach ($users as $user)
         {
-            Mail::to($user)->send(new PushupNotification($user, $pushup));
+            Mail::to($user)->queue(new PushupNotification($user, $pushup));
         }
 
 
