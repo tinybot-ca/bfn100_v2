@@ -167,7 +167,7 @@
 
 </script>
 
-<script> // Rolling History -- STACKED AREA
+<script> // Rolling History -- STACKED COLUMN
 
     $(function() {
         
@@ -192,11 +192,60 @@
         function drawMyChart(categories, series) {
             var myChart = Highcharts.chart('rollingHistory', {
 
+                // Options for STACKED AREA
+                // credits: {
+                //     enabled: false
+                // },
+                // chart: {
+                //     type: 'column'
+                // },
+                // title: {
+                //     text: 'Last 6 Months'
+                // },
+                // subtitle: {
+                //     text: 'Rolling 6 month history'
+                // },
+                // xAxis: {
+                //     categories: categories,
+                //     tickmarkPlacement: 'on',
+                //     title: {
+                //         enabled: false
+                //     }
+                // },
+                // yAxis: {
+                //     title: {
+                //         text: 'Push-ups'
+                //     },
+                //     stackLabels: {
+                //         enabled: true,
+                //         style: {
+                //             fontWeight: 'bold',
+                //             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                //         }
+                //     }
+                // },
+                // tooltip: {
+                //     split: true,
+                //     valueSuffix: ' push-ups'
+                // },
+                // plotOptions: {
+                //     area: {
+                //         stacking: 'normal',
+                //         lineColor: '#666666',
+                //         lineWidth: 1,
+                //         marker: {
+                //             lineWidth: 1,
+                //             lineColor: '#666666'
+                //         }
+                //     }
+                // },
+                // series: series
+
                 credits: {
                     enabled: false
                 },
                 chart: {
-                    type: 'area'
+                    type: 'column'
                 },
                 title: {
                     text: 'Last 6 Months'
@@ -205,29 +254,42 @@
                     text: 'Rolling 6 month history'
                 },
                 xAxis: {
-                    categories: categories,
-                    tickmarkPlacement: 'on',
-                    title: {
-                        enabled: false
-                    }
+                    categories: categories
                 },
                 yAxis: {
+                    min: 0,
                     title: {
                         text: 'Push-ups'
                     },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
                 },
+                // legend: {
+                //     align: 'right',
+                //     x: -30,
+                //     verticalAlign: 'top',
+                //     y: 25,
+                //     floating: true,
+                //     backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                //     borderColor: '#CCC',
+                //     borderWidth: 1,
+                //     shadow: false
+                // },
                 tooltip: {
-                    split: true,
-                    valueSuffix: ' push-ups'
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
                 },
                 plotOptions: {
-                    area: {
+                    column: {
                         stacking: 'normal',
-                        lineColor: '#666666',
-                        lineWidth: 1,
-                        marker: {
-                            lineWidth: 1,
-                            lineColor: '#666666'
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                         }
                     }
                 },
