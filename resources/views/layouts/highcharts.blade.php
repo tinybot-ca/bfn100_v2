@@ -288,7 +288,7 @@
                     column: {
                         stacking: 'normal',
                         dataLabels: {
-                            enabled: true,
+                            enabled: false,
                             color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
                         }
                     }
