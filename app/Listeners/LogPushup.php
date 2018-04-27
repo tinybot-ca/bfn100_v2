@@ -47,14 +47,16 @@ class LogPushup
 
             ]);
 
-        // Pushup Notification email
-        $users = User::all();
-
-        foreach ($users as $user)
+        // Pushup Notification email - only for newly created push-ups
+        if ($type == 'Pushup Create')
         {
-            Mail::to($user)->queue(new PushupNotification($user, $pushup));
-        }
+            $users = User::all();
 
+            foreach ($users as $user)
+            {
+                Mail::to($user)->queue(new PushupNotification($user, $pushup));
+            }
+        }
 
         // Job::push(function($job) 
         // {
