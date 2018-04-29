@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\Mail\Welcome;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -50,11 +51,22 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'invitation-code.required' => 'Invitation code required.',
+            'invitation-code.in' => 'Invalid invitation code.'
+        ];
+
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+            'invitation-code' => [
+                'required',
+                Rule::in(['bfn4life'])
+                ]
+            ],
+            $messages
+        );
     }
 
     /**
