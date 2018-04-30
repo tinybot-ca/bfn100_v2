@@ -24,7 +24,7 @@ class ChartsController extends Controller
 
         $chart = [];
         $day = date('d');
-        $users = User::all()->sortBy('name');
+        $users = User::orderBy('name', 'asc')->get();
 
         foreach ( $users as $user ) 
         {
@@ -86,7 +86,7 @@ class ChartsController extends Controller
         }
 
         // series
-        $users = User::all()->sortBy('name');
+        $users = User::orderBy('name', 'asc')->get();
         $series = [];
 
         foreach ($users as $user)
@@ -118,7 +118,7 @@ class ChartsController extends Controller
     {
         $chart = [];
         
-        $users = User::all()->sortBy('name');
+        $users = User::orderBy('name', 'asc')->get();
 
         foreach ($users as $user)
         {
@@ -145,7 +145,7 @@ class ChartsController extends Controller
         }
 
         // series
-        $users = User::all()->sortBy('name');
+        $users = User::orderBy('name', 'asc')->get();
 
         foreach ($users as $user)
         {
