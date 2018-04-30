@@ -81,7 +81,7 @@ class ChartsController extends Controller
         // categories
         for ($n = 5; $n >= 0; $n--)
         {
-            $date = date('Y-m', strtotime(Carbon::create( date('Y'), date('m'), 1 )->subMonths($n)));
+            $date = date('Y-m', strtotime(Carbon::create( date('Y'), date('m'), date('d') )->subMonthsNoOverflow($n)));
             $chart['categories'][] = date('M Y', strtotime($date));
         }
 
@@ -95,7 +95,7 @@ class ChartsController extends Controller
             
             for ($n = 5; $n >= 0; $n--)
             {
-                $date = date('Y-m', strtotime(Carbon::create( date('Y'), date('m'), 1 )->subMonths($n)));
+                $date = date('Y-m', strtotime(Carbon::create( date('Y'), date('m'), date('d') )->subMonthsNoOverflow($n)));
 
                 $pushups = Pushup::where('user_id', '=', $user->id)
                                     ->orderBy('datetime')
