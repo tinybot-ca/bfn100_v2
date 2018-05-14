@@ -459,7 +459,8 @@
                 series: [{
                     type: 'wordcloud',
                     data: data,
-                    name: 'Occurrences'
+                    name: 'Occurrences',
+                    rotation: 0
                 }],
                 title: {
                     text: 'Word Cloud'
