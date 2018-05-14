@@ -171,13 +171,16 @@ class ChartsController extends Controller
     public function wordCloud()
     {
         $chart = '';
-        $pushups = Pushup::all();
+        $pushups = Pushup::latest()->limit(50)->get();
 
         foreach ($pushups as $pushup)
         {
             $chart .= $pushup->comment ?  $pushup->comment . ', ' : '';
         }
 
-        return $chart;
+        $wordFilter = array("the", "The", "test", "Test");
+        
+        return str_replace($wordFilter, "", $chart);
     }
+
 }
