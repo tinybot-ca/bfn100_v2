@@ -181,7 +181,7 @@ class ChartsController extends Controller
         $wordFilter = 'the,The,test,Test,for,For,a,A,from,From,have,Have,to,To,and,And,it,It';
         $wordFilter = explode(",", $wordFilter);
         
-        $chart = explode(" ", $chart);
+        $chart = explode(" ", strtolower($chart));
         
         $query = [];
 

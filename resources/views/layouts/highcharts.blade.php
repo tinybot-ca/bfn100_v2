@@ -460,7 +460,7 @@
                     type: 'wordcloud',
                     data: data,
                     name: 'Occurrences',
-                    rotation: 0
+                    // rotation: 0
                 }],
                 title: {
                     text: 'Word Cloud'
