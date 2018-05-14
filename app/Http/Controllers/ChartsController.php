@@ -175,12 +175,27 @@ class ChartsController extends Controller
 
         foreach ($pushups as $pushup)
         {
-            $chart .= $pushup->comment ?  $pushup->comment . ', ' : '';
+            $chart .= $pushup->comment ? $pushup->comment . ' ' : '';
         }
 
-        $wordFilter = array("the", "The", "test", "Test", "for", "For", "a", "A", "from", "From", "have", "Have", "to", "To");
+        $wordFilter = 'the,The,test,Test,for,For,a,A,from,From,have,Have,to,To';
+        $wordFilter = explode(",", $wordFilter);
         
-        return str_replace($wordFilter, "", $chart);
+        $chart = explode(" ", $chart);
+        
+        $query = [];
+
+        foreach ($chart as $word)
+        {
+            if (!in_array($word, $wordFilter))
+            {
+                $query[] = $word;
+            }
+        }
+
+        $query = implode(" ", $query);
+
+        return $query;
     }
 
 }
