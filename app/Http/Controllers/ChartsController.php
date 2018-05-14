@@ -171,7 +171,7 @@ class ChartsController extends Controller
     public function wordCloud()
     {
         $chart = '';
-        $pushups = Pushup::latest()->limit(50)->get();
+        $pushups = Pushup::latest()->limit(150)->get();
 
         foreach ($pushups as $pushup)
         {
