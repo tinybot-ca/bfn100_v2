@@ -24,7 +24,7 @@
                     
                     {{-- @include ('layouts.errors') --}}
                     
-                    <form method="POST" action="/pushups/{{ $pushup->id }}">
+                    <form method="POST" action="/pushups/{{ $pushup->id }}" novalidate>
                         {{ method_field('PATCH') }}
                         {{ csrf_field() }}
 
