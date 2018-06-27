@@ -5,7 +5,7 @@
                 <td class="content-cell" align="center">
                     {{ Illuminate\Mail\Markdown::parse($slot) }}
                     <p>
-                        <a href="https://anon.to/zilxvT">Unsubscribe</a>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Unsubscribe</a>
                     </p>
                 </td>
             </tr>
