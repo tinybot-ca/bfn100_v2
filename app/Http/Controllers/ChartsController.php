@@ -187,7 +187,7 @@ class ChartsController extends Controller
 
         foreach ($chart as $word)
         {
-            $s = preg_replace('/[^a-z0-9]+/i', '_', $word);
+            $s = preg_replace('/[^a-z0-9]+/i', '', $word);
 
             if (!in_array($s, $wordFilter))
             {
