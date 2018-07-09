@@ -178,7 +178,7 @@ class ChartsController extends Controller
             $chart .= $pushup->comment ? $pushup->comment . ' ' : '';
         }
 
-        $wordFilter = 'the,The,test,Test,for,For,a,A,from,From,have,Have,to,To,and,And,it,It,in,IN,is,Is';
+        $wordFilter = 'the,The,test,Test,for,For,a,A,from,From,have,Have,to,To,and,And,it,It,in,IN,is,Is,its,Its';
         $wordFilter = explode(",", $wordFilter);
         
         $chart = explode(" ", strtolower($chart));
