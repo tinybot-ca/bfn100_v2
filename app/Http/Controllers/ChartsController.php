@@ -61,7 +61,7 @@ class ChartsController extends Controller
         $rows = DB::table('pushups')
                     ->join('users', 'pushups.user_id', '=', 'users.id')
                     ->selectRaw('users.name as name, sum(pushups.amount) as amount')
-                    ->whereYear('datetime', '=', 2018)
+                    ->whereYear('datetime', '=', '2018')
                     // ->whereYear('datetime', '=', date('m') - 1)
                     ->whereMonth('datetime', '=', date('m') - 1)
                     // ->whereMonth('datetime', '=', 12)
