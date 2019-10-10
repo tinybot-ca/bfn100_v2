@@ -62,9 +62,7 @@ class ChartsController extends Controller
                     ->join('users', 'pushups.user_id', '=', 'users.id')
                     ->selectRaw('users.name as name, sum(pushups.amount) as amount')
                     ->whereYear('datetime', '=', date('Y', strtotime('-1 months')))
-                    // ->whereYear('datetime', '=', date('m') - 1)
                     ->whereMonth('datetime', '=', date('m', strtotime('-1 months')))
-                    // ->whereMonth('datetime', '=', 12)
                     ->groupBy('name')
                     ->get();
 
